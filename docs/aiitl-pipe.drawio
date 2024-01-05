@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-05T01:43:06.110Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0" etag="6KVhgf9SIFnVgZ_EqACq" version="22.1.16" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-05T01:44:26.116Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0" etag="MCdXooEIg9XEVF69pK7W" version="22.1.16" type="github">
   <diagram name="Page-1" id="fXT3vuanvutzZHE2cfc6">
-    <mxGraphModel dx="1386" dy="795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="693" dy="398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -132,15 +132,6 @@
             <mxPoint x="690" y="720" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="n2oy-H6I7TYns77ilxJf-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ryT2o7gFrRwiRls5OtG9-58" target="ryT2o7gFrRwiRls5OtG9-66">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="n2oy-H6I7TYns77ilxJf-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ryT2o7gFrRwiRls5OtG9-58" target="ryT2o7gFrRwiRls5OtG9-66">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="n2oy-H6I7TYns77ilxJf-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ryT2o7gFrRwiRls5OtG9-58" target="ryT2o7gFrRwiRls5OtG9-66">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="ryT2o7gFrRwiRls5OtG9-58" value="&lt;div&gt;HIVE AI&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=4;opacity=10;textOpacity=10;" parent="1" vertex="1">
           <mxGeometry x="920" y="690" width="160" height="110" as="geometry" />
         </mxCell>
@@ -181,13 +172,8 @@
             <mxPoint x="620" y="440" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ryT2o7gFrRwiRls5OtG9-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ryT2o7gFrRwiRls5OtG9-66" target="ryT2o7gFrRwiRls5OtG9-58" edge="1">
+        <mxCell id="n2oy-H6I7TYns77ilxJf-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;opacity=10;" edge="1" parent="1" source="ryT2o7gFrRwiRls5OtG9-66" target="n2oy-H6I7TYns77ilxJf-1">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="n2oy-H6I7TYns77ilxJf-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;textOpacity=10;opacity=10;" edge="1" parent="1" source="ryT2o7gFrRwiRls5OtG9-66">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1000" y="730" as="targetPoint" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="ryT2o7gFrRwiRls5OtG9-66" value="TF MODELS" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=4;opacity=10;textOpacity=10;" parent="1" vertex="1">
           <mxGeometry x="920" y="590" width="160" height="60" as="geometry" />
