@@ -1,34 +1,30 @@
 #!/usr/bin/env python3
 
-import os.path
-import sys, configparser as cp
+import os.path, sys
+import configparser as cp
 
 
-# -- load start args
-this_file = None; ini_file = None
-try:
-   if len(sys.argv) == 1:
-      ini_file = "run.ini"
-   if len(sys.argv) > 2:
-      print("BadCountIncomingArgs")
-      exit(1)
-   # -- -- -- --
-   this_file, ini_file = sys.argv
-except ValueError as ve:
-   print(ve)
-finally:
-   pass
+# load start args
+if len(sys.argv) == 1:
+   sys.argv.append("run.ini")
 
-print(f"\n[ running: {this_file} ]\n[ ini: {ini_file} ]\n[ cwd: {os.getcwd()} ]")
+if len(sys.argv) != 2:
+   print("BadCountIncomingArgs")
+   exit(1)
+# -- -- -- --
+THIS_FILE, INI_FILE = sys.argv
+print(f"\n[ main: {THIS_FILE} ]\n[ ini: {INI_FILE} ]\n[ cwd: {os.getcwd()} ]")
 
-if os.path.exists(ini_file):
-   pass
+ini_path = f"conf/{INI_FILE}"
+if not os.path.exists(ini_path):
+   print(f"PathNotFound: {ini_path}")
+   exit(1)
 
 
 def main():
    print("-- [ main ] --")
 
 
-# -- -- entry point -- --
+# -- -- -- entry point -- -- --
 if __name__ == "__main__":
    main()
