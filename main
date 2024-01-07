@@ -7,13 +7,15 @@ import sys, configparser as cp
 # -- load start args
 this_file = None; ini_file = None
 try:
-   if len(sys.argv) != 2:
+   if len(sys.argv) == 1:
+      ini_file = "run.ini"
+   if len(sys.argv) > 2:
       print("BadCountIncomingArgs")
       exit(1)
    # -- -- -- --
    this_file, ini_file = sys.argv
 except ValueError as ve:
-   ini_file = "run.ini"
+   print(ve)
 finally:
    pass
 
