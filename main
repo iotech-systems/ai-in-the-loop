@@ -13,7 +13,8 @@ if len(sys.argv) != 2:
    exit(1)
 # -- -- -- --
 THIS_FILE, INI_FILE = sys.argv
-print(f"\n[ main: {THIS_FILE} ]\n[ ini: {INI_FILE} ]\n[ cwd: {os.getcwd()} ]")
+hdr: str = "--- loading ---"
+print(f"\n{hdr}\n[ main: {THIS_FILE} ]\n[ ini: {INI_FILE} ]\n[ cwd: {os.getcwd()} ]\n")
 
 ini_path = f"conf/{INI_FILE}"
 if not os.path.exists(ini_path):
