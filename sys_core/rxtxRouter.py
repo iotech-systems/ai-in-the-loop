@@ -43,9 +43,11 @@ class rxtxRouter(object):
       return 0
 
    def __router_thread(self):
+      print("\n[ __router_thread ]\n")
       rxtx_air: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "AIR_RXTX"][0]
       rxtx_fc: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "FC_RXTX"][0]
-      print([rxtx_air, rxtx_fc])
+      rxtx_ai: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "AI_RXTX"][0]
+      print(f"[ {rxtx_air} | {rxtx_fc} | {rxtx_ai} ]")
       while True:
          try:
             # read air
