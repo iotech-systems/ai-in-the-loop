@@ -22,6 +22,9 @@ class rxtxPipeQ(object):
       self.pipe_thread: th.Thread = t.Any
       self.rxtx_buff_in: bytearray = bytearray()
 
+   def __str__(self):
+      return f"[ {self.qtag} | {self.dev_path} | {self.baud} ]"
+
    def init(self):
       try:
          print(f"[ qpipe:init - {self.qtag} ]")
