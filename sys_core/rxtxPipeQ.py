@@ -57,8 +57,9 @@ class rxtxPipeQ(object):
                print(tmpbuff)
                tmpstr: str = tmpbuff.decode("utf-8").strip()
                print(f"<< {self.qtag} | {tmpstr} >>")
-               if tmpstr in ["<CLR>"]:
+               if tmpstr in ["<AI:CLR>"]:
                   self.rxtx_arr_in.clear()
+                  self.rxtx_arr_in.append(bytes("[ AI CLEARED ]\n", "utf-8"))
                else:
                   self.rxtx_arr_in.append(tmpbuff)
             else:

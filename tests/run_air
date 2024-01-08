@@ -13,11 +13,25 @@ dev_port: devPort = devPort(dev=DEV, baud=BAUD)
 SLEEP_MS: float = 0.01
 # SLEEP_MS: float = 1.0
 
+call_cnt: int = 0
+
+
+def __get_next_buff() -> bytes:
+   global call_cnt
+   # -- -- -- --
+   buff_str: str = str(uuid.uuid4()).upper() + "\n"
+   if call_cnt == 25:
+      buff_str: str = "<AI:CLR>"
+      call_cnt = 0
+   # -- -- -- --
+   call_cnt += 1
+   buff_bytes: bytes = buff_str.encode("utf-8")
+   return buff_bytes
+
 
 def __loop_tick():
    try:
-      buff_str: str = str(uuid.uuid4()).upper() + "\n"
-      buff_bytes: bytes = buff_str.encode("utf-8")
+      buff_bytes: bytes = __get_next_buff()
       dev_port.ser.write(buff_bytes)
    except Exception as e:
       print(e)
