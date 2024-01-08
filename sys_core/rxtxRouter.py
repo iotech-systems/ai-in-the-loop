@@ -1,6 +1,6 @@
-import time
 
-import serial as ser
+import time
+import typing as t
 import threading as th
 import configparser as cp
 # -- -- -- --
@@ -14,7 +14,7 @@ class rxtxRouter(object):
       self.ini: cp.ConfigParser = ini
       self.ini_sec: cp.SectionProxy = self.ini["RXTX_PIPES"]
       self.pipes_arr: [] = None
-      self.rxtx_pqs: [rxtxPipeQ] = []
+      self.rxtx_pqs: t.List[rxtxPipeQ] = []
       self.router_thread: th.Thread = th.Thread(target=self.__router_thread)
 
    def load_ini(self) -> int:
@@ -43,8 +43,8 @@ class rxtxRouter(object):
       return 0
 
    def __router_thread(self):
-      rxtx_air: rxtxPipeQ = [i for i in self.rxtx_pqs if i.qtag == "AIR_RXTX"][0]
-      rxtx_fc: rxtxPipeQ = [i for i in self.rxtx_pqs if i.qtag == "FC_RXTX"][0]
+      rxtx_air: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "AIR_RXTX"][0]
+      rxtx_fc: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "FC_RXTX"][0]
       print([rxtx_air, rxtx_fc])
       while True:
          try:

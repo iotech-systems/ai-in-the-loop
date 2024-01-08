@@ -15,6 +15,7 @@ class rxtxPipeQ(object):
    """
    def __init__(self, pipe_str: str):
       self.info_arr: [] = pipe_str.split(",")
+      self.qtag: str = ""
       self.dev_path, self.baud, self.qtag = self.info_arr
       self.baud: int = int(self.baud)
       self.rxtx: serial.Serial = t.Any
