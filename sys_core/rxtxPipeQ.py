@@ -47,7 +47,12 @@ class rxtxPipeQ(object):
       while True:
          try:
             if self.rxtx.in_waiting > 0:
-               self.rxtx_buff_in.extend(self.rxtx.read_all())
+               tmpbuff: bytes = self.rxtx.read_all()
+               tmpstr: str = tmpbuff.decode("utf-8")
+               print(tmpstr)
+               if tmpstr in ["<CLR>"]:
+                  self.rxtx_buff_in.clear()
+               self.rxtx_buff_in.extend(tmpbuff)
             else:
                time.sleep(0.1)
          except Exception as e:
