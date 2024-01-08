@@ -55,7 +55,7 @@ class rxtxPipeQ(object):
                else:
                   self.rxtx_buff_in.extend(tmpbuff)
             else:
-               time.sleep(0.1)
+               time.sleep(0.01)
          except Exception as e:
             utils.log_err(f"e: {self.qtag} | {e}")
 
@@ -69,6 +69,9 @@ class rxtxPipeQ(object):
 
    def __pipe_thread(self):
       while True:
-         print(f"__pipe_thread | qtag: {self.qtag}")
-         print(f"rxtx_in: {self.rxtx_buff_in}")
-         time.sleep(2.0)
+         try:
+            print(f"__pipe_thread | qtag: {self.qtag}")
+            print(f"\trxtx_in: {self.rxtx_buff_in}")
+            time.sleep(2.0)
+         except Exception as e:
+            utils.log_err(e)
