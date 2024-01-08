@@ -2,9 +2,10 @@
 
 import os.path, sys
 import configparser as cp
+from sys_core.rxtxRouter import rxtxRouter
 
 
-# load start args
+# -- process input args --
 if len(sys.argv) == 1:
    sys.argv.append("run.ini")
 
@@ -20,6 +21,19 @@ ini_path = f"conf/{INI_FILE}"
 if not os.path.exists(ini_path):
    print(f"PathNotFound: {ini_path}")
    exit(1)
+
+# -- ini load --
+FILES_TO_LOAD_CNT: int = 1
+INI_OBJ: cp.ConfigParser = cp.ConfigParser()
+tmp = INI_OBJ.read(ini_path)
+if len(tmp) != FILES_TO_LOAD_CNT:
+   print(f"BadIniLoad: {len(tmp)}")
+   exit(1)
+
+# -- create rxtx router --
+RXTX_ROUTER: rxtxRouter = rxtxRouter(INI_OBJ)
+RXTX_ROUTER.load_ini()
+RXTX_ROUTER.start()
 
 
 def main():
