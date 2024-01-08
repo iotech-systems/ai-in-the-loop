@@ -55,6 +55,7 @@ class rxtxPipeQ(object):
       while True:
          try:
             print(f"__ai_thread | qtag: {self.qtag}")
+            time.sleep(4.0)
          except Exception as e:
             utils.log_err(f"e: {self.qtag} | {e}")
 
