@@ -22,6 +22,7 @@ class rxtxPipeQ(object):
       self.rxtx_thread: th.Thread = t.Any
       self.pipe_thread: th.Thread = t.Any
       self.rxtx_buff_in: bytearray = bytearray()
+      self.rxtx_arr_in: t.List[bytes] = []
 
    def __str__(self):
       return f"[ {self.qtag} | {self.dev_path} | {self.baud} ]"
@@ -55,9 +56,11 @@ class rxtxPipeQ(object):
                tmpstr: str = tmpbuff.decode("utf-8").strip()
                print(f"<< {self.qtag} | {tmpstr} >>")
                if tmpstr in ["<CLR>"]:
-                  self.rxtx_buff_in.clear()
+                  # self.rxtx_buff_in.clear()
+                  self.rxtx_arr_in.clear()
                else:
-                  self.rxtx_buff_in.extend(tmpbuff)
+                  # self.rxtx_buff_in.extend(tmpbuff)
+                  self.rxtx_arr_in.append(tmpbuff)
             else:
                time.sleep(0.01)
          except Exception as e:
@@ -75,7 +78,7 @@ class rxtxPipeQ(object):
       while True:
          try:
             print(f"__pipe_thread | qtag: {self.qtag}")
-            print(f"\trxtx_in: {self.rxtx_buff_in}")
+            # print(f"\trxtx_in: {self.rxtx_buff_in}")
             time.sleep(2.0)
          except Exception as e:
             utils.log_err(e)

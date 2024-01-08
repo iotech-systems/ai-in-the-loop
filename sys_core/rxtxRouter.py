@@ -47,12 +47,15 @@ class rxtxRouter(object):
       rxtx_air: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "AIR_RXTX"][0]
       rxtx_fc: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "FC_RXTX"][0]
       rxtx_ai: rxtxPipeQ = [i for i in self.rxtx_pqs if str(i.qtag).strip() == "AI_RXTX"][0]
-      print(f"[ {rxtx_air} | {rxtx_fc} | {rxtx_ai} ]")
+      print(f"|< {rxtx_air} | {rxtx_fc} | {rxtx_ai} >|")
       while True:
          try:
-            # read air
-            # if self.rxtx_pqs
-            time.sleep(2.0)
+            # -- read air --
+            if len(rxtx_air.rxtx_arr_in) > 0:
+               btmp: bytes = rxtx_air.rxtx_arr_in.pop()
+               rxtx_fc.rxtx.write(btmp)
+            # -- -- -- --
+            time.sleep(0.01)
          except Exception as e:
             utils.log_err(e)
          finally:
