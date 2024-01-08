@@ -8,6 +8,9 @@ from sys_core.utils import utils
 from sys_core.rxtxPipeQ import rxtxPipeQ
 
 
+SLEEP_MS_8: float = 0.008
+
+
 class rxtxRouter(object):
 
    def __init__(self, ini: cp.ConfigParser):
@@ -55,7 +58,7 @@ class rxtxRouter(object):
                btmp: bytes = rxtx_air.rxtx_arr_in.pop()
                rxtx_fc.rxtx.write(btmp)
             # -- -- -- --
-            time.sleep(0.01)
+            time.sleep(SLEEP_MS_8)
          except Exception as e:
             utils.log_err(e)
          finally:
