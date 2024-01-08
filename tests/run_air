@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import time, uuid
+from core.devPort import devPort
+
+
+DEV: str = "/dev/ttyUSB1"
+BAUD: int = 115200
+dev_port: devPort = devPort(dev=DEV, baud=BAUD)
+
+# run at 100hz so every 10ms
+# SLEEP_MS: float = 0.01
+SLEEP_MS: float = 1.0
+
+
+def __loop_tick():
+   try:
+      # buff_str: str = str(uuid.uuid4().hex).upper()
+      buff_str: str = "abcd_erik_owsiak...!!!"
+      buff_bytes: bytes = bytes(buff_str, "utf-8")
+      dev_port.ser.write(buff_bytes)
+   except Exception as e:
+      print(e)
+   finally:
+      pass
+
+
+# -- -- [ main loop ticks ] -- --
+while True:
+   __loop_tick()
+   time.sleep(SLEEP_MS)

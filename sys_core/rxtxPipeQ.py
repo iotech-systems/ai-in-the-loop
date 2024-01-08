@@ -54,6 +54,7 @@ class rxtxPipeQ(object):
          try:
             if self.rxtx.in_waiting > 0:
                tmpbuff: bytes = self.rxtx.read_all()
+               print(tmpbuff)
                tmpstr: str = tmpbuff.decode("utf-8").strip()
                print(f"<< {self.qtag} | {tmpstr} >>")
                if tmpstr in ["<CLR>"]:
@@ -63,7 +64,7 @@ class rxtxPipeQ(object):
             else:
                time.sleep(SLEEP_MS_8)
          except Exception as e:
-            utils.log_err(f"e: {self.qtag} | {e}")
+            utils.log_err(f"ex: {self.qtag} | {e}")
 
    def __ai_thread(self):
       while True:
