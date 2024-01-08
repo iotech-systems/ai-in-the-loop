@@ -29,12 +29,13 @@ class rxtxPipeQ(object):
             self.rxtx = serial.Serial(port=self.dev_path, baudrate=self.baud)
             if not self.rxtx.is_open:
                self.rxtx.open()
-         else:
-            pass
+            else:
+               self.rxtx_thread = th.Thread(target=self.__rxtx_thread)
+         elif self.dev_path == AI_DEV_PATH:
+            self.rxtx_thread = th.Thread(target=self.__ai_thread)
       except Exception as e:
          utils.log_err(e)
       # -- -- -- --
-      self.rxtx_thread = th.Thread(target=self.__rxtx_thread)
       self.pipe_thread = th.Thread(target=self.__pipe_thread)
 
    def start(self):
@@ -50,8 +51,15 @@ class rxtxPipeQ(object):
          except Exception as e:
             utils.log_err(f"e: {self.qtag} | {e}")
 
+   def __ai_thread(self):
+      while True:
+         try:
+            print(f"__ai_thread | qtag: {self.qtag}")
+         except Exception as e:
+            utils.log_err(f"e: {self.qtag} | {e}")
+
    def __pipe_thread(self):
       while True:
-         print(f"qtag: {self.qtag}")
+         print(f"__pipe_thread | qtag: {self.qtag}")
          print(f"rxtx_in: {self.rxtx_buff_in}")
          time.sleep(2.0)
