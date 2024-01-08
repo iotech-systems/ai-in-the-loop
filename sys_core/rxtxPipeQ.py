@@ -49,7 +49,7 @@ class rxtxPipeQ(object):
             if self.rxtx.in_waiting > 0:
                tmpbuff: bytes = self.rxtx.read_all()
                tmpstr: str = tmpbuff.decode("utf-8").strip()
-               print(tmpstr)
+               print(f"<< {self.qtag} | {tmpstr} >>")
                if tmpstr in ["<CLR>"]:
                   self.rxtx_buff_in.clear()
                else:
