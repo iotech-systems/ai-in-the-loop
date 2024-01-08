@@ -50,7 +50,7 @@ class rxtxRouter(object):
       print(f"|< {rxtx_air} | {rxtx_fc} | {rxtx_ai} >|")
       while True:
          try:
-            # -- read air --
+            # -- read air & write fc --
             if len(rxtx_air.rxtx_arr_in) > 0:
                btmp: bytes = rxtx_air.rxtx_arr_in.pop()
                rxtx_fc.rxtx.write(btmp)
@@ -60,4 +60,3 @@ class rxtxRouter(object):
             utils.log_err(e)
          finally:
             pass
-
