@@ -5,6 +5,7 @@ from core.devPort import devPort
 
 
 DEV: str = "/dev/ttyUSB1"
+# 9600, 14400, 19200, 38400, 57600, 115200
 BAUD: int = 115200
 dev_port: devPort = devPort(dev=DEV, baud=BAUD)
 
@@ -15,9 +16,8 @@ SLEEP_MS: float = 1.0
 
 def __loop_tick():
    try:
-      # buff_str: str = str(uuid.uuid4().hex).upper()
-      buff_str: str = "abcd_erik_owsiak...!!!"
-      buff_bytes: bytes = bytes(buff_str, "utf-8")
+      buff_str: str = str(uuid.uuid4()).upper()
+      buff_bytes: bytes = buff_str.encode("utf-8")
       dev_port.ser.write(buff_bytes)
    except Exception as e:
       print(e)

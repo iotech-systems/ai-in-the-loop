@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+import time
 import os.path, sys
 import configparser as cp
+# -- system --
 from sys_core.rxtxRouter import rxtxRouter
 
 
@@ -38,6 +40,9 @@ RXTX_ROUTER.start()
 
 def main():
    print("-- [ main ] --")
+   while True:
+      print("-- main --")
+      time.sleep(4.0)
 
 
 # -- -- -- entry point -- -- --
