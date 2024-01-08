@@ -52,7 +52,8 @@ class rxtxPipeQ(object):
                print(tmpstr)
                if tmpstr in ["<CLR>"]:
                   self.rxtx_buff_in.clear()
-               self.rxtx_buff_in.extend(tmpbuff)
+               else:
+                  self.rxtx_buff_in.extend(tmpbuff)
             else:
                time.sleep(0.1)
          except Exception as e:
