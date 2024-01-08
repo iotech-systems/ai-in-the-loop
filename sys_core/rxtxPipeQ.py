@@ -48,7 +48,7 @@ class rxtxPipeQ(object):
             if self.rxtx.in_waiting > 0:
                self.rxtx_buff_in.extend(self.rxtx.read_all())
          except Exception as e:
-            utils.log_err(e)
+            utils.log_err(f"e: {self.qtag} | {e}")
 
    def __pipe_thread(self):
       while True:
