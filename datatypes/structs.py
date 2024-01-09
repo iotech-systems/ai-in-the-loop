@@ -6,3 +6,9 @@ class serInfo(object):
       self.tag: str = t
       self.dev: str = d
       self.baud: int = b
+
+
+class aiMsg(object):
+
+   def __init__(self):
+      pass

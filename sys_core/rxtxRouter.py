@@ -6,14 +6,16 @@ import configparser as cp
 # -- -- -- --
 from sys_core.utils import utils
 from sys_core.rxtxPipeQ import rxtxPipeQ
-
-
-SLEEP_MS_8: float = 0.008
+from ai_core.aiBot import aiBot
 
 
 class rxtxRouter(object):
 
-   def __init__(self, ini: cp.ConfigParser):
+   SLEEP_SECS: float = 0.008
+   # SLEEP_SECS: float = 1.0
+
+   def __init__(self, aibot: aiBot, ini: cp.ConfigParser):
+      self.aibot: aiBot = aibot
       self.ini: cp.ConfigParser = ini
       self.ini_sec: cp.SectionProxy = self.ini["RXTX_PIPES"]
       self.pipes_arr: [] = None
@@ -56,9 +58,12 @@ class rxtxRouter(object):
             # -- read air & write fc --
             if len(rxtx_air.rxtx_arr_in) > 0:
                btmp: bytes = rxtx_air.rxtx_arr_in.pop()
-               rxtx_fc.rxtx.write(btmp)
+               if b'_AI:[' in btmp:
+                  self.aibot.rxtx_arr_in.append(btmp)
+               else:
+                  rxtx_fc.rxtx.write(btmp)
             # -- -- -- --
-            time.sleep(SLEEP_MS_8)
+            time.sleep(rxtxRouter.SLEEP_SECS)
          except Exception as e:
             utils.log_err(e)
          finally:

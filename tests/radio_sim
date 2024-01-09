@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import time
+# -- core --
+from core.radioSim import radioSim
+
+
+DEV: str = "/dev/ttyUSB1"
+# 9600, 14400, 19200, 38400, 57600, 115200
+BAUD: int = 115200
+SLEEP_SEC: float = 1.0
+
+
+RADIO_SIM: radioSim = radioSim(dev=DEV, baud=BAUD)
+RADIO_SIM.init()
+RADIO_SIM.start()
+
+
+def __main_loop_tick():
+   try:
+      print("[ __main_loop_tick ]")
+   except Exception as e:
+      print(e)
+   finally:
+      pass
+
+
+# -- -- [ main loop ticks ] -- --
+while True:
+   __main_loop_tick()
+   time.sleep(SLEEP_SEC)
