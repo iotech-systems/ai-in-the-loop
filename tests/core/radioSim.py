@@ -11,8 +11,8 @@ class radioSim(object):
 
    # 9600, 14400, 19200, 38400, 57600, 115200
    # run at 100hz so every 10ms
-   # SLEEP_SECS: float = 0.01
-   SLEEP_SECS: float = 1.0
+   SLEEP_SECS: float = 0.01
+   # SLEEP_SECS: float = 1.0
 
    def __init__(self, dev: str, baud: int):
       self.dev: str = dev
@@ -41,7 +41,7 @@ class radioSim(object):
       def __tick():
          try:
             bbuff: bytes = self.__get_next_buff()
-            self.dev_port.send_bytes(bbuff)
+            self.dev_port.send_bytes(bbuff, withEcho=True)
          except Exception as e:
             print(e)
       # -- -- -- --
@@ -59,7 +59,7 @@ class radioSim(object):
    def __on_key_release(self, key: kbd.Key):
       try:
          ai_msg: bytes = self.__get_ai_tag(key)
-         self.dev_port.send_bytes(ai_msg)
+         self.dev_port.send_bytes(ai_msg, withEcho=True)
       except Exception as e:
          print(e)
       finally:

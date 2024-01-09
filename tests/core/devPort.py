@@ -14,10 +14,12 @@ class devPort(object):
       if not self.ser.is_open:
          self.ser.open()
 
-   def send_bytes(self, msg: bytes):
+   def send_bytes(self, msg: bytes, withEcho: bool = False):
       try:
          devPort.THLOCK.acquire()
          self.ser.write(msg)
+         if withEcho:
+            print(msg)
       except Exception as e:
          print(e)
       finally:
