@@ -12,3 +12,15 @@ class aiKillMode(object):
       tmp: str = self.modes.popleft()
       self.modes.append(tmp)
       return tmp
+
+
+class aiTracking(object):
+
+   def __init__(self):
+      self.modes: deque = deque()
+      self.modes.extend(["TRACK-V0", "TRACK-V1", "TRACK-V2"])
+
+   def next(self) -> str:
+      tmp: str = self.modes.popleft()
+      self.modes.append(tmp)
+      return tmp

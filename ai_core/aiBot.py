@@ -21,6 +21,7 @@ class aiBot(object):
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
       self.kill_mode: aiKillMode = aiKillMode()
+      self.ai_tacking: aiTracking = aiTracking()
 
    def init(self):
       # -- init vtx cam --
@@ -43,7 +44,7 @@ class aiBot(object):
             bmsg: bytes = self.rxtx_arr_in.pop()
             # -- ai target mode --
             if b'kbd.Key.up' in bmsg:
-               self.vtx_stream.vtxoverlay.ai_mode = "AI-tracking"
+               self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
                self.vtx_stream.vtxoverlay.targ_box_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
             elif b'kbd.Key.left' in bmsg:
