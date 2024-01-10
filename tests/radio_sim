@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
 
-import time
+import sys, time
 # -- core --
 from core.radioSim import radioSim
 
 
+# -- default port --
 DEV: str = "/dev/ttyUSB1"
+
+# -- load args --
+if len(sys.argv) > 1:
+   devstr: str = str(sys.argv[1])
+   if "/dev/tty" in devstr:
+      DEV = devstr
+   else:
+      pass
+# -- end load --
+
+
 # 9600, 14400, 19200, 38400, 57600, 115200
 BAUD: int = 115200
 SLEEP_SEC: float = 1.0
