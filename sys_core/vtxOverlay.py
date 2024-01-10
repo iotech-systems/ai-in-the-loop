@@ -21,6 +21,7 @@ class vtxOverlay(object):
    def __init__(self):
       self.ai_mode: str = "pilot"
       self.targ_box_color = sysColors.sleep
+      self.targ_box_thickness = 1
 
    def update(self, req):
       with MappedArray(req, "main") as m:
@@ -30,11 +31,14 @@ class vtxOverlay(object):
 
    def __datetime(self, m: MappedArray):
       timestamp = time.strftime("%Y/%m/%d %X")
-      cv2.putText(m.array, timestamp, dts_org, font, scale, sysColors.green, thickness)
+      cv2.putText(m.array, timestamp, dts_org, font, scale
+         , sysColors.green, self.targ_box_thickness)
 
    def __mode(self, m: MappedArray):
       mode: str = f"mode: {self.ai_mode}"
-      cv2.putText(m.array, mode, mode_org, font, scale, sysColors.green, thickness)
+      cv2.putText(m.array, mode, mode_org, font, scale
+         , sysColors.green, self.targ_box_thickness)
 
    def __target_box(self, m: MappedArray):
-      cv2.rectangle(m.array, targ_org_s, targ_org_e, self.targ_box_color, thickness)
+      cv2.rectangle(m.array, targ_org_s, targ_org_e
+         , self.targ_box_color, self.targ_box_thickness)
