@@ -22,3 +22,8 @@ def apply_timestamp(request):
 
 picam2.pre_callback = apply_timestamp
 picam2.start(show_preview=True)
+
+
+while True:
+   print("Preview.DRM")
+   time.sleep(4.0)
