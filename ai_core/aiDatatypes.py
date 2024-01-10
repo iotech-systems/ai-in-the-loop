@@ -1,11 +1,14 @@
 
+from collections import deque
+
 
 class aiKillMode(object):
 
    def __init__(self):
-      self.modes: [] = ["KILL-CM", "KILL-SM"]
+      self.modes: deque = deque()
+      self.modes.extend(["KILL-CM", "KILL-SM"])
 
    def next(self) -> str:
-      tmp: str = self.modes.pop()
+      tmp: str = self.modes.popleft()
       self.modes.append(tmp)
       return tmp
