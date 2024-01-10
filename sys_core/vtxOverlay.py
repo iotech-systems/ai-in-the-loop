@@ -42,8 +42,8 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __baro_temp(self, m: MappedArray):
-      m, h, t = self.baro_temp
-      buff: str = f"B: {m}m {h}hPa| T: {t}"
+      alt, h, t = self.baro_temp
+      buff: str = f"B: {alt}m {h}hPa| T: {t}"
       cv2.putText(m.array, buff, baro_org, font, scale
          , sysColors.green, self.draw_thickness)
 
