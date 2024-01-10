@@ -38,6 +38,7 @@ class vtxStream(object):
          vtxStream.cam.set_overlay(logo_overlay)
       else:
          print(f"PathNotFound: {vtxStream.logoimg}")
+         print(f"cwd: {os.getcwd()}")
          # -- -- -- --
       self.main_thread.start()
 
