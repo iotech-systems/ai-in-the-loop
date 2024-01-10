@@ -9,7 +9,7 @@ from sys_core.sysColors import sysColors
 col_green = (0, 255, 0)
 dts_org = (20, 30)
 mode_org = (380, 30)
-baro_org = (120, 466)
+baro_org = (100, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -43,7 +43,7 @@ class vtxOverlay(object):
 
    def __baro_temp(self, m: MappedArray):
       alt, h, t = self.baro_temp
-      buff: str = f"B: {alt}m {h}hPa| T: {t}"
+      buff: str = f"A: {alt}m P: {h}hPa T: {t}*C"
       cv2.putText(m.array, buff, baro_org, font, scale
          , sysColors.green, self.draw_thickness)
 
