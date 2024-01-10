@@ -9,7 +9,7 @@ from sys_core.sysColors import sysColors
 col_green = (0, 255, 0)
 dts_org = (20, 30)
 mode_org = (380, 30)
-baro_org = (200, 400)
+baro_org = (160, 440)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
 font = cv2.FONT_HERSHEY_SIMPLEX
