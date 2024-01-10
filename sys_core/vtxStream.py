@@ -11,7 +11,7 @@ CONF: dict = {"size": (640, 480)}
 
 class vtxStream(object):
 
-   logoimg: str = "_media/logo1.png"
+   logoimg: str = "_media/logo2.png"
    cam: Picamera2 = t.Any
    cam_conf: dict = t.Any
 
