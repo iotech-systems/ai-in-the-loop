@@ -6,7 +6,7 @@ from picamera2 import Picamera2, MappedArray
 
 picam2 = Picamera2()
 colour = (0, 255, 0)
-origin = (0, 30)
+origin = (10, 30)
 font = cv2.FONT_HERSHEY_SIMPLEX
 scale = 1
 thickness = 2
