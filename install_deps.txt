@@ -1,2 +1,6 @@
+
+# auto installs
+
 pyserial
 pynput
+tflite-runtime
