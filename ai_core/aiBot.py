@@ -5,6 +5,7 @@ import threading as th
 import configparser as cp
 # -- system --
 from sys_core.vtxStream import vtxStream
+from sys_core.sysColors import sysColors
 
 
 class aiBot(object):
@@ -38,7 +39,14 @@ class aiBot(object):
             if len(self.rxtx_arr_in) == 0:
                return 1
             bmsg: bytes = self.rxtx_arr_in.pop()
-            print(f"<<<<<<<<<<<<[ {bmsg} ]>>>>>>>>>>>>>>")
+            # print(f"<<<<<<<<<<<<[ {bmsg} ]>>>>>>>>>>>>>>")
+            # -- ai target mode --
+            if b'kbd.Key.up' in bmsg:
+               self.vtx_stream.vtxoverlay.ai_mode = "ai-tracking"
+               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
+            elif b'kbd.Key.left' in bmsg:
+               self.vtx_stream.vtxoverlay.ai_mode = "ai-kill"
+               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
             return 0
          except Exception as e:
             print(e)

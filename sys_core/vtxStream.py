@@ -13,16 +13,16 @@ class vtxStream(object):
 
    cam: Picamera2 = t.Any
    cam_conf: dict = t.Any
-   vtxoverlay: vtxOverlay = vtxOverlay()
 
    def __init__(self, cam_code: str = "PICAM2"):
       self.cam_code: str = cam_code.upper()
+      self.vtxoverlay: vtxOverlay = vtxOverlay()
       self.main_thread: th.Thread = th.Thread(target=self.__main_thread)
 
    def init_cam(self):
       if self.cam_code == "PICAM2":
          vtxStream.cam = Picamera2()
-         vtxStream.cam.pre_callback = vtxStream.vtxoverlay.update
+         vtxStream.cam.pre_callback = self.vtxoverlay.update
          vtxStream.cam_conf = vtxStream.cam.create_preview_configuration(CONF)
          vtxStream.cam.configure(vtxStream.cam_conf)
       else:
