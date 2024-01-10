@@ -1,4 +1,4 @@
-
+import os
 import threading as th
 import cv2, time, typing as t
 from picamera2 import Picamera2, MappedArray, Preview
@@ -33,9 +33,12 @@ class vtxStream(object):
       # -- vtx start --
       vtxStream.cam.start_preview(Preview.DRM)
       vtxStream.cam.start(show_preview=True)
-      logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_UNCHANGED)
-      vtxStream.cam.set_overlay(logo_overlay)
-      # -- -- -- --
+      if os.path.exists(vtxStream.logoimg):
+         logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_UNCHANGED)
+         vtxStream.cam.set_overlay(logo_overlay)
+      else:
+         print(f"PathNotFound: {vtxStream.logoimg}")
+         # -- -- -- --
       self.main_thread.start()
 
    def __main_thread(self):
