@@ -21,7 +21,7 @@ class vtxOverlay(object):
    def __init__(self):
       self.ai_mode: str = "pilot"
       self.targ_box_color = sysColors.sleep
-      self.targ_box_thickness = 1
+      self.targ_box_thickness = 2
 
    def update(self, req):
       with MappedArray(req, "main") as m:
