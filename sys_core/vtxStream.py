@@ -26,8 +26,6 @@ class vtxStream(object):
          vtxStream.cam.pre_callback = self.vtxoverlay.update
          vtxStream.cam_conf = vtxStream.cam.create_preview_configuration(CONF)
          vtxStream.cam.configure(vtxStream.cam_conf)
-         logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_UNCHANGED)
-         vtxStream.cam.set_overlay(logo_overlay)
       else:
          pass
 
@@ -35,6 +33,8 @@ class vtxStream(object):
       # -- vtx start --
       vtxStream.cam.start_preview(Preview.DRM)
       vtxStream.cam.start(show_preview=True)
+      logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_UNCHANGED)
+      vtxStream.cam.set_overlay(logo_overlay)
       # -- -- -- --
       self.main_thread.start()
 
