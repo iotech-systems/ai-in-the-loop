@@ -42,10 +42,10 @@ class aiBot(object):
             # print(f"<<<<<<<<<<<<[ {bmsg} ]>>>>>>>>>>>>>>")
             # -- ai target mode --
             if b'kbd.Key.up' in bmsg:
-               self.vtx_stream.vtxoverlay.ai_mode = "ai-tracking"
+               self.vtx_stream.vtxoverlay.ai_mode = "AI-tracking"
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
             elif b'kbd.Key.left' in bmsg:
-               self.vtx_stream.vtxoverlay.ai_mode = "ai-kill"
+               self.vtx_stream.vtxoverlay.ai_mode = "AI-kill"
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
             return 0
          except Exception as e:
