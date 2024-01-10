@@ -50,7 +50,7 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
             elif b'kbd.Key.down' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = "pilot"
-               self.vtx_stream.vtxoverlay.targ_box_thickness = 1
+               self.vtx_stream.vtxoverlay.targ_box_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
             return 0
          except Exception as e:
