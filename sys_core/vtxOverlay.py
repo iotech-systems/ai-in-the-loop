@@ -20,7 +20,7 @@ scale = 0.8
 class vtxOverlay(object):
 
    def __init__(self):
-      self.ai_mode: str = "pilot"
+      self.ai_mode: str = "OFF"
       self.targ_box_color = sysColors.sleep
       self.targ_box_thickness = 2
 
@@ -39,7 +39,7 @@ class vtxOverlay(object):
          , sysColors.green, self.targ_box_thickness)
 
    def __mode(self, m: MappedArray):
-      mode: str = f"mode: {self.ai_mode}"
+      mode: str = f"AImode: {self.ai_mode}"
       cv2.putText(m.array, mode, mode_org, font, scale
          , sysColors.green, self.targ_box_thickness)
 
