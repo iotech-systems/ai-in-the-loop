@@ -5,9 +5,9 @@ from picamera2 import MappedArray
 colour = (0, 255, 0)
 dts_org = (20, 30)
 mode_org = (380, 30)
-targ_org_s = (120, 160)
-targ_org_e = (360, 480)
-targ_sleep_color = (120, 120, 120)
+targ_org_s = (210, 130)
+targ_org_e = (430, 350)
+targ_sleep_color = (100, 100, 100)
 targ_track_color = ()
 targ_kill_color = ()
 font = cv2.FONT_HERSHEY_SIMPLEX
