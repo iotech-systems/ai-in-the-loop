@@ -1,3 +1,4 @@
+import os.path
 
 import cv2, time
 from picamera2 import MappedArray
@@ -22,6 +23,9 @@ class vtxOverlay(object):
       self.ai_mode: str = "pilot"
       self.targ_box_color = sysColors.sleep
       self.targ_box_thickness = 2
+
+   # def init(self):
+   #    self.__logo()
 
    def update(self, req):
       with MappedArray(req, "main") as m:

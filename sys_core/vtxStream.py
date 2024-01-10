@@ -11,6 +11,7 @@ CONF: dict = {"size": (640, 480)}
 
 class vtxStream(object):
 
+   logoimg: str = "_media/logo.png"
    cam: Picamera2 = t.Any
    cam_conf: dict = t.Any
 
@@ -25,6 +26,8 @@ class vtxStream(object):
          vtxStream.cam.pre_callback = self.vtxoverlay.update
          vtxStream.cam_conf = vtxStream.cam.create_preview_configuration(CONF)
          vtxStream.cam.configure(vtxStream.cam_conf)
+         logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_UNCHANGED)
+         vtxStream.cam.set_overlay(logo_overlay)
       else:
          pass
 
