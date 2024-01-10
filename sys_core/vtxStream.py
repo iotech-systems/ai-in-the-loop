@@ -34,7 +34,8 @@ class vtxStream(object):
       vtxStream.cam.start_preview(Preview.DRM)
       vtxStream.cam.start(show_preview=True)
       if os.path.exists(vtxStream.logoimg):
-         logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_UNCHANGED)
+         # cv2.IMREAD_UNCHANGED
+         logo_overlay = cv2.imread(vtxStream.logoimg, cv2.IMREAD_COLOR)
          vtxStream.cam.set_overlay(logo_overlay)
       else:
          print(f"PathNotFound: {vtxStream.logoimg}")
