@@ -7,19 +7,24 @@ import configparser as cp
 from ai_core.aiDatatypes import *
 from sys_core.vtxStream import vtxStream
 from sys_core.sysColors import sysColors
+from sys_core.sensStream import sensStream
 
 
 class aiBot(object):
 
-   MAIN_SLEEP_SECS: float = 2.0
    SLEEP_SECS: float = 0.008
+   MAIN_SLEEP_SECS: float = 2.0
    vtx_stream: vtxStream = vtxStream(cam_code="PICAM2")
+   sens_stream: sensStream = sensStream()
 
    def __init__(self, ini: cp.ConfigParser):
       self.ini: cp.ConfigParser = ini
       self.rxtx_arr_in: t.List[bytes] = []
+      # -- -- -- --
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
+      self.sens_thread: th.Thread = t.Any
+      # -- -- -- --
       self.kill_mode: aiKillMode = aiKillMode()
       self.ai_tacking: aiTracking = aiTracking()
 
@@ -28,10 +33,12 @@ class aiBot(object):
       aiBot.vtx_stream.init_cam()
       aiBot.vtx_stream.start()
       # -- bot threads --
+      self.sens_thread = th.Thread(target=self.__sens_thread)
       self.msg_thread = th.Thread(target=self.__msg_thread)
       self.main_thread = th.Thread(target=self.__main_thread)
 
    def start(self):
+      self.sens_thread.start()
       self.main_thread.start()
       self.msg_thread.start()
 
@@ -45,15 +52,15 @@ class aiBot(object):
             # -- ai target mode --
             if b'kbd.Key.up' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
-               self.vtx_stream.vtxoverlay.targ_box_thickness = 2
+               self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
             elif b'kbd.Key.left' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
-               self.vtx_stream.vtxoverlay.targ_box_thickness = 2
+               self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
             elif b'kbd.Key.down' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
-               self.vtx_stream.vtxoverlay.targ_box_thickness = 2
+               self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
             return 0
          except Exception as e:
@@ -66,6 +73,16 @@ class aiBot(object):
          tick_val: int = __tick()
          time.sleep(aiBot.SLEEP_SECS)
       # -- -- -- --
+
+   def __sens_thread(self):
+      def __tick():
+         m, p = aiBot.sens_stream.baro()
+         tp = aiBot.sens_stream.temp()
+         self.vtx_stream.vtxoverlay.baro_temp = (m, p, tp)
+      # -- -- -- --
+      while True:
+         __tick()
+         time.sleep(0.100)
 
    def __main_thread(self):
       while True:

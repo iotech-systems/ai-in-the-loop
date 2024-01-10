@@ -1,7 +1,8 @@
+
 import os
 import threading as th
 import cv2, time, typing as t
-from picamera2 import Picamera2, MappedArray, Preview
+from picamera2 import Picamera2, Preview
 # -- -- system -- --
 from sys_core.vtxOverlay import vtxOverlay
 
