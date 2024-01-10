@@ -4,6 +4,7 @@ import typing as t
 import threading as th
 import configparser as cp
 # -- system --
+from ai_core.aiDatatypes import *
 from sys_core.vtxStream import vtxStream
 from sys_core.sysColors import sysColors
 
@@ -19,6 +20,7 @@ class aiBot(object):
       self.rxtx_arr_in: t.List[bytes] = []
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
+      self.kill_mode: aiKillMode = aiKillMode()
 
    def init(self):
       # -- init vtx cam --
@@ -45,7 +47,7 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
             elif b'kbd.Key.left' in bmsg:
-               self.vtx_stream.vtxoverlay.ai_mode = "AI-kill"
+               self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
                self.vtx_stream.vtxoverlay.targ_box_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
             elif b'kbd.Key.down' in bmsg:
