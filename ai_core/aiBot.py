@@ -29,6 +29,7 @@ class aiBot(object):
       self.kill_mode: aiKillMode = aiKillMode()
       self.ai_tacking: aiTracking = aiTracking()
       self.hb_icons: hbIcons = hbIcons()
+      self.ai_modes: aiModes = aiModes()
 
    def init(self):
       # -- init vtx cam --
@@ -54,7 +55,8 @@ class aiBot(object):
             bmsg: bytes = self.rxtx_arr_in.pop()
             # -- ai target mode --
             if b'[#kbd.Key.up#]' in bmsg:
-               self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
+               # self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
+               self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
