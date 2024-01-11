@@ -8,7 +8,8 @@ from sys_core.sysColors import sysColors
 # -- color r, g, b --
 col_green = (0, 255, 0)
 dts_org = (20, 30)
-mode_org = (420, 30)
+ai_mode_org = (440, 30)
+ai_stat_org = (440, 60)
 baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
@@ -21,6 +22,7 @@ class vtxOverlay(object):
 
    def __init__(self):
       self.ai_mode: str = "OFF"
+      self.ai_stat: str = "READY"
       self.baro_temp: () = (0.0, 0.0, 0.0)
       self.targ_box_color = sysColors.sleep
       self.draw_thickness = 2
@@ -29,7 +31,8 @@ class vtxOverlay(object):
    def update(self, req):
       with MappedArray(req, "main") as m:
          self.__datetime(m)
-         self.__mode(m)
+         self.__ai_mode(m)
+         self.__ai_status(m)
          self.__baro_temp(m)
          self.__target_box(m)
 
@@ -38,9 +41,14 @@ class vtxOverlay(object):
       cv2.putText(m.array, timestamp, dts_org, font, scale
          , sysColors.green, self.draw_thickness)
 
-   def __mode(self, m: MappedArray):
+   def __ai_mode(self, m: MappedArray):
       mode: str = f"AIm: {self.ai_mode}"
-      cv2.putText(m.array, mode, mode_org, font, scale
+      cv2.putText(m.array, mode, ai_mode_org, font, scale
+         , sysColors.green, self.draw_thickness)
+
+   def __ai_status(self, m: MappedArray):
+      stat: str = f"AIs: {self.ai_stat}"
+      cv2.putText(m.array, stat, ai_stat_org, font, scale
          , sysColors.green, self.draw_thickness)
 
    def __baro_temp(self, m: MappedArray):
