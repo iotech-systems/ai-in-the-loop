@@ -12,8 +12,8 @@ class radioSim(object):
    # 9600, 14400, 19200, 38400, 57600, 115200
    # 0.01 run at 100hz so every 10ms
    # 0.02 run at 50hz so every 20ms
-   SLEEP_SECS: float = 0.02
-   # SLEEP_SECS: float = 1.0
+   # SLEEP_SECS: float = 0.02
+   SLEEP_SECS: float = 2.0
    HB_SLEEP_SECS: float = 0.25
 
    def __init__(self, dev: str, baud: int):
@@ -94,8 +94,10 @@ class radioSim(object):
          ai_cmd = "kbd.Key.left"
       elif key == kbd.Key.right:
          ai_cmd = "kbd.Key.right"
+      elif key == kbd.Key.enter:
+         ai_cmd: str = str(kbd.Key.enter)
       else:
-         print("other key")
+         print(f"other key: {key}")
          return None
       # -- -- -- --
       xbuff0: str = uuid.uuid1().hex[:16]
