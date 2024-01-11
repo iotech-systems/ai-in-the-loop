@@ -54,18 +54,25 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
+               return 0
             elif b'kbd.Key.left' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
+               return 0
             elif b'kbd.Key.down' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
-            return 0
+               return 0
+            elif b'[#HB#]' in bmsg:
+
+               return 0
+            # -- -- -- --
+            return 100
          except Exception as e:
             print(e)
-            return 2
+            return 200
          finally:
             pass
       # -- -- -- --

@@ -20,7 +20,7 @@ if len(sys.argv) > 1:
 
 # 9600, 14400, 19200, 38400, 57600, 115200
 BAUD: int = 115200
-SLEEP_SEC: float = 1.0
+SLEEP_SEC: float = 4.0
 
 
 RADIO_SIM: radioSim = radioSim(dev=DEV, baud=BAUD)
@@ -37,7 +37,7 @@ def __main_loop_tick():
       pass
 
 
-# -- -- [ main loop ticks ] -- --
+# --- [ main loop ticks ] ---
 while True:
    __main_loop_tick()
    time.sleep(SLEEP_SEC)

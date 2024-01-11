@@ -13,30 +13,38 @@ class radioSim(object):
    # run at 100hz so every 10ms
    SLEEP_SECS: float = 0.01
    # SLEEP_SECS: float = 1.0
+   HB_SLEEP_SECS: float = 0.200
 
    def __init__(self, dev: str, baud: int):
       self.dev: str = dev
       self.baud: int = baud
       self.call_cnt: int = 0
       self.dev_port: devPort = t.Any
-      self.__main_loop: th.Thread = t.Any
-      self.__kbd_thread: th.Thread = t.Any
+      self.main_thread: th.Thread = t.Any
+      self.kbd_thread: th.Thread = t.Any
+      self.hb_thread: th.Thread = t.Any
 
    def init(self):
       self.dev_port: devPort = devPort(dev=self.dev, baud=self.baud)
-      self.__main_loop: th.Thread = th.Thread(target=self.__main_loop_thread)
-      self.__kbd_thread: th.Thread = th.Thread(target=self.__kbd_start)
+      self.main_thread: th.Thread = th.Thread(target=self.__main_thread)
+      self.kbd_thread: th.Thread = th.Thread(target=self.__kbd_start)
+      self.hb_thread: th.Thread = th.Thread(target=self.__hb_thread)
 
    def start(self):
-      self.__main_loop.start()
-      self.__kbd_thread.start()
+      self.main_thread.start()
+      self.kbd_thread.start()
+      self.hb_thread.start()
+
+   def __hb_thread(self):
+      with True:
+         time.sleep(radioSim.HB_SLEEP_SECS)
 
    def __kbd_start(self):
       with kbd.Listener(on_press=self.__on_key_press,
          on_release=self.__on_key_release) as _l:
          _l.join()
 
-   def __main_loop_thread(self):
+   def __main_thread(self):
       # -- -- -- --
       def __tick():
          try:
@@ -48,6 +56,7 @@ class radioSim(object):
       while True:
          __tick()
          time.sleep(radioSim.SLEEP_SECS)
+      # -- -- -- --
 
    def __get_next_buff(self) -> bytes:
       buff_str: str = str(uuid.uuid4()).upper() + "\n"
@@ -78,5 +87,16 @@ class radioSim(object):
          print("other key")
          return None
       # -- -- -- --
-      buff: str = f"{str(uuid.uuid1().hex[:16])}_AI:[{ai_buff}]_{str(uuid.uuid1().hex[:16])}"
+      xbuff0: str = uuid.uuid1().hex[:16]
+      xbuff1: str = uuid.uuid1().hex[:16]
+      buff: str = f"{xbuff0}_AI:[{ai_buff}]_{xbuff1}"
+      # -- -- -- --
+      return bytes(buff, "utf-8")
+
+   def __get_ai_heartbeat(self):
+      # -- -- -- --
+      xbuff0: str = uuid.uuid1().hex[:16]
+      xbuff1: str = uuid.uuid1().hex[:16]
+      buff: str = f"{xbuff0}_AI:[#HB#]_{xbuff1}"
+      # -- -- -- --
       return bytes(buff, "utf-8")
