@@ -54,8 +54,10 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __ai_status(self, m: MappedArray):
-      stat: str = f"AIs: {self.ai_stat}"
-      cv2.putText(m.array, stat, ai_stat_org, font, scale
+      cv2.putText(m.array, "AIs:", ai_stat_org, font, scale
+         , sysColors.green, self.draw_thickness)
+      x, y = ai_mode_org
+      cv2.putText(m.array, self.ai_stat, ((x + 20), y), font, scale
          , sysColors.green, self.draw_thickness)
 
    def __baro_temp(self, m: MappedArray):
