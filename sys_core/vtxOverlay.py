@@ -18,7 +18,6 @@ targ_org_s = (210, 130)
 targ_org_e = (430, 350)
 # -- -- text & etc -- --
 scale: float = 0.72
-# cv2.FONT_HERSHEY_PLAIN
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 
@@ -30,7 +29,7 @@ class vtxOverlay(object):
       self.baro_temp: () = (0.0, 0.0, 0.0)
       self.targ_box_color = sysColors.sleep
       self.draw_thickness = 2
-      self.last_rf_hb: int = 0
+      self.last_rf_hb: str = "X"
 
    def update(self, req):
       with MappedArray(req, "main") as m:
@@ -67,6 +66,6 @@ class vtxOverlay(object):
          , self.targ_box_color, self.draw_thickness)
 
    def __rf_hb(self, m: MappedArray):
-      strbuff: str = f"HB: X"
+      strbuff: str = f"HB: {self.last_rf_hb}"
       cv2.putText(m.array, strbuff, hb_org, font, scale
          , sysColors.green, self.draw_thickness)

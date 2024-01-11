@@ -28,6 +28,7 @@ class aiBot(object):
       # -- -- -- --
       self.kill_mode: aiKillMode = aiKillMode()
       self.ai_tacking: aiTracking = aiTracking()
+      self.hb_icons: hbIcons = hbIcons()
 
    def init(self):
       # -- init vtx cam --
@@ -68,7 +69,7 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif b'[#HB#]' in bmsg:
-               print(f"\n\tAI: {bmsg}\n")
+               self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next()
                return 0
             # -- -- -- --
             return 100

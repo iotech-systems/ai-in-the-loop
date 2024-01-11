@@ -24,3 +24,15 @@ class aiTracking(object):
       tmp: str = self.modes.popleft()
       self.modes.append(tmp)
       return tmp
+
+
+class hbIcons(object):
+
+   def __init__(self):
+      self.modes: deque = deque()
+      self.modes.extend(["X", "*"])
+
+   def next(self) -> str:
+      tmp: str = self.modes.popleft()
+      self.modes.append(tmp)
+      return tmp
