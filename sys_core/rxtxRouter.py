@@ -56,13 +56,17 @@ class rxtxRouter(object):
       # -- -- -- --
       def __router_tick() -> int:
          try:
-            # -- read air & write fc --
-            if len(rxtx_air.rxtx_arr_in) > 0:
-               btmp: bytes = rxtx_air.rxtx_arr_in.pop()
-               if b'_AI:' in btmp:
-                  self.aibot.rxtx_arr_in.append(btmp)
-               else:
-                  rxtx_fc.rxtx.write(btmp)
+            # -- read air tx if empty exit --
+            if len(rxtx_air.rxtx_arr_in) == 0:
+               return 0
+            # -- -- -- --
+            btmp: bytes = rxtx_air.rxtx_arr_in.pop()
+            # -- is msg for AI --
+            if b'_AI:' in btmp:
+               self.aibot.rxtx_arr_in.append(btmp)
+               return 0
+            # -- for now if not AI then msg is for FC --
+            rxtx_fc.rxtx.write(btmp)
             # -- -- -- --
             return 0
          except Exception as e:
