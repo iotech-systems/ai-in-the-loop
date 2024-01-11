@@ -56,9 +56,12 @@ class vtxOverlay(object):
    def __ai_status(self, m: MappedArray):
       cv2.putText(m.array, "AIs:", ai_stat_org, font, scale
          , sysColors.green, self.draw_thickness)
-      x, y = ai_mode_org
+      txtcolor: () = sysColors.green
+      if self.ai_stat in ["RDY"]:
+         txtcolor: () = sysColors.d_yellow
+      x, y = ai_stat_org
       cv2.putText(m.array, self.ai_stat, ((x + 20), y), font, scale
-         , sysColors.green, self.draw_thickness)
+         , txtcolor, self.draw_thickness)
 
    def __baro_temp(self, m: MappedArray):
       alt, h, t = self.baro_temp
@@ -67,7 +70,6 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __target_box(self, m: MappedArray):
-
       cv2.rectangle(m.array, targ_org_s, targ_org_e
          , self.targ_box_color, self.draw_thickness)
 
