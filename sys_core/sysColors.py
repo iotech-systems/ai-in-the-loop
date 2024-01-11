@@ -14,7 +14,7 @@ class sysColors(object):
          return sysColors.red
       if "trk" in buff.lower():
          return sysColors.d_yellow
-      if "trn" in buff.lower():
-         return  sysColors.blue
+      if "rtn" in buff.lower():
+         return sysColors.blue
       # -- -- -- --
       return sysColors.green
