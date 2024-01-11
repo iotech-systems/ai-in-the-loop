@@ -18,7 +18,7 @@ class aiModes(object):
 
    def __init__(self):
       self.modes: deque = deque()
-      self.modes.extend(["KILL-CM", "KILL-SM", "TRACK-V0", "TRACK-V1", "TRACK-V2", "ON-SCR-TRACK"])
+      self.modes.extend(["KILL-CM", "KILL-SM", "TRK-V0", "TRK-V1", "TRK-V2", "TRK-ONSCR"])
 
    def next(self) -> str:
       tmp: str = self.modes.popleft()

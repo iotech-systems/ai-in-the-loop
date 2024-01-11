@@ -4,7 +4,7 @@ import typing as t
 import threading as th
 import configparser as cp
 # -- system --
-from ai_core.aiDatatypes import *
+from ai_core.datastructs import *
 from sys_core.vtxStream import vtxStream
 from sys_core.sysColors import sysColors
 from sys_core.sensStream import sensStream
