@@ -18,7 +18,7 @@ from collections import deque
 
 class aiModes(object):
 
-   m: [] = ["KILL/CM", "KILL/SM", "SEEK/KILL" "TRK/V0", "TRK/V1", "TRK/V2", "TRK/ONSCR"]
+   m: [] = ["KILL/CM", "KILL/SM", "SEEK/KILL", "TRK/V0", "TRK/V1", "TRK/V2", "TRK/ONSCR"]
 
    def __init__(self):
       self.modes: deque = deque()
