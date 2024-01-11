@@ -77,6 +77,6 @@ class vtxOverlay(object):
    def __rf_hb(self, m: MappedArray):
       cv2.putText(m.array,"rfHB:", hb_org, font, scale
          , sysColors.green, self.draw_thickness)
-      x_offset: int = 60; x, y = hb_org
+      x_offset: int = 65; x, y = hb_org
       cv2.putText(m.array, self.last_rf_hb, (x + x_offset, y), font, scale
          , sysColors.green, self.draw_thickness)
