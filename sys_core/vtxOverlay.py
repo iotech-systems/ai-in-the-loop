@@ -9,7 +9,7 @@ from sys_core.sysColors import sysColors
 col_green = (0, 255, 0)
 dts_org = (20, 30)
 ai_mode_org = (440, 30)
-ai_stat_org = (460, 60)
+ai_stat_org = (450, 60)
 baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
