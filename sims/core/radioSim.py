@@ -4,7 +4,7 @@ import typing as t
 import threading as th
 from pynput import keyboard as kbd
 # -- core --
-from core.datatypes.structs import *
+from shared.datatypes.structs import *
 from core.devPort import devPort
 
 
