@@ -24,6 +24,7 @@ class aiBot(object):
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
       self.sens_thread: th.Thread = t.Any
+      self.ai_status_thread: th.Thread = t.Any
       # -- -- -- --
       self.kill_mode: aiKillMode = aiKillMode()
       self.ai_tacking: aiTracking = aiTracking()
@@ -36,6 +37,7 @@ class aiBot(object):
       self.sens_thread = th.Thread(target=self.__sens_thread)
       self.msg_thread = th.Thread(target=self.__msg_thread)
       self.main_thread = th.Thread(target=self.__main_thread)
+      self.ai_status_thread = th.Thread(target=self.__ai_status_thread)
 
    def start(self):
       self.sens_thread.start()
@@ -80,6 +82,9 @@ class aiBot(object):
          tick_val: int = __tick()
          time.sleep(aiBot.SLEEP_SECS)
       # -- -- -- --
+
+   def __ai_status_thread(self):
+      pass
 
    def __sens_thread(self):
       def __tick():
