@@ -12,7 +12,7 @@ col_green = (0, 255, 0)
 top_ln = 30
 dts_org = (20, top_ln)
 hb_org = (300, top_ln)
-ai_mode_org = (440, top_ln)
+ai_mode_org = (444, top_ln)
 ai_actv_org = (450, (top_ln * 2))
 ai_stat_org = (450, (top_ln * 3))
 baro_org = (80, 466)
@@ -52,7 +52,7 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __ai_mode(self, m: MappedArray):
-      x_offset: int = 65
+      x_offset: int = 62
       cv2.putText(m.array, "AIm:", ai_mode_org, font, scale
          , sysColors.green, self.draw_thickness)
       txtcolor: () = sysColors.green
