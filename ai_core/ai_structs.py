@@ -7,12 +7,13 @@ from shared.datatypes.structs import aiNavDir
 
 class aiModes(object):
 
-   m: [] = ["KILL/cm", "KILL/sm", "SEEK/kill", "TRK/v0", "TRK/v1", "TRK/v2"
-      , "TRK/onscr", "RTN/rfHB:OK"]
+   m: [] = ["KILL/cm", "KILL/sm", "SEEK/kill/cm", "TRK/v0", "TRK/v1", "TRK/v2"
+      , "TRK/onscr", "RTN/rfHB:OK", "RTN/home"]
 
    def __init__(self):
       self.modes: deque = deque()
       self.modes.extend(aiModes.m)
+      self.current_mode: str = ""
       self.dir: aiNavDir = aiNavDir.FORWARD
 
    def nxt(self) -> str:

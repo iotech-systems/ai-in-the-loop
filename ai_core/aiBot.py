@@ -70,7 +70,7 @@ class aiBot(object):
             elif f"[#{aiNav.AI_PRV_MODE.name}#]" in str_msg:
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.prv()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
-               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
+               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
