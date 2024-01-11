@@ -60,7 +60,7 @@ class vtxOverlay(object):
       if self.ai_stat in ["RDY"]:
          txtcolor: () = sysColors.d_yellow
       x, y = ai_stat_org
-      cv2.putText(m.array, self.ai_stat, ((x + 20), y), font, scale
+      cv2.putText(m.array, self.ai_stat, ((x + 60), y), font, scale
          , txtcolor, self.draw_thickness)
 
    def __baro_temp(self, m: MappedArray):
