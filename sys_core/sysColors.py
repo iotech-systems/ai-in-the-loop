@@ -5,6 +5,7 @@ class sysColors(object):
    red_1 = (186, 6, 27)
    green = (0, 255, 0)
    blue = (0, 0, 255)
+   blue_1 = (25, 7, 122)
    sleep = (180, 180, 188)
    d_yellow = (242, 201, 15)
    grey_a = (127, 126, 133)
@@ -16,6 +17,6 @@ class sysColors(object):
       if "trk" in buff.lower():
          return sysColors.d_yellow
       if "rtn" in buff.lower():
-         return sysColors.blue
+         return sysColors.blue_1
       # -- -- -- --
       return sysColors.green
