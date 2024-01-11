@@ -13,7 +13,7 @@ baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
 # -- -- text & etc -- --
-scale = 0.8
+scale = 0.72
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 
