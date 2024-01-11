@@ -1,14 +1,7 @@
 
 
-class serInfo(object):
-
-   def __init__(self, t: str, d: str, b: int):
-      self.tag: str = t
-      self.dev: str = d
-      self.baud: int = b
-
-
-class aiMsg(object):
-
-   def __init__(self):
-      pass
+class sysNav(object):
+   NXT_MODE: str = "NXT_MODE"
+   PRV_MODE: str = "PRV_MODE"
+   NXT_ACTON: str = "NXT_ACTON"
+   PRV_ACTON: str = "PRV_ACTON"

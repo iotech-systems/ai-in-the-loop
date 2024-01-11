@@ -35,6 +35,7 @@ class vtxOverlay(object):
       self.last_rf_hb: str = "X"
       self.trg_box: targetBox = targetBox()
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def update(self, req):
       with MappedArray(req, "main") as m:
          self.__datetime(m)
@@ -46,11 +47,13 @@ class vtxOverlay(object):
          # -- target box --
          self.__target_box(m)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __datetime(self, m: MappedArray):
       timestamp = time.strftime("'%y/%m/%d %X")
       cv2.putText(m.array, timestamp, dts_org, font, scale
          , sysColors.green, self.draw_thickness)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_mode(self, m: MappedArray):
       x_offset: int = 58
       cv2.putText(m.array, "AIm:", ai_mode_org, font, scale
@@ -59,9 +62,10 @@ class vtxOverlay(object):
       if self.ai_mode in ["OFF"]:
          txtcolor: () = sysColors.grey_a
       x, y = ai_mode_org
-      cv2.putText(m.array, self.ai_mode, ((x + x_offset), y), font, scale
-         , txtcolor, self.draw_thickness)
+      cv2.putText(m.array, self.ai_mode, ((x + x_offset), y)
+         , font, scale, txtcolor, self.draw_thickness)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_status(self, m: MappedArray):
       x_offset: int = 50
       cv2.putText(m.array, "AIs:", ai_stat_org, font, scale
@@ -70,33 +74,37 @@ class vtxOverlay(object):
       if self.ai_stat in ["RDY"]:
          txtcolor: () = sysColors.d_yellow
       x, y = ai_stat_org
-      cv2.putText(m.array, self.ai_stat, ((x + x_offset), y), font, scale
-         , txtcolor, self.draw_thickness)
+      cv2.putText(m.array, self.ai_stat, ((x + x_offset), y)
+         , font, scale, txtcolor, self.draw_thickness)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_act_on(self, m: MappedArray):
       x_offset: int = 50
-      cv2.putText(m.array, "AIa:", ai_actv_org, font, scale
-         , sysColors.green, self.draw_thickness)
+      cv2.putText(m.array, "AIa:", ai_actv_org, font
+         , scale, sysColors.green, self.draw_thickness)
       # txtcolor: () = sysColors.green
       # if self.ai_stat in ["RDY"]:
       txtcolor: () = sysColors.d_yellow
       x, y = ai_actv_org
-      cv2.putText(m.array, "rfHB:err", ((x + x_offset), y), font, scale
-         , txtcolor, self.draw_thickness)
+      cv2.putText(m.array, "rfHB:err", ((x + x_offset), y)
+         , font, scale, txtcolor, self.draw_thickness)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __baro_temp(self, m: MappedArray):
       alt, h, t = self.baro_temp
       buff: str = f"A: {alt}m P: {h}hPa T: {t}*C"
       cv2.putText(m.array, buff, baro_org, font, scale
          , sysColors.green, self.draw_thickness)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __target_box(self, m: MappedArray):
       cv2.rectangle(m.array, targ_org_s, targ_org_e
          , self.targ_box_color, self.draw_thickness)
 
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __rf_hb(self, m: MappedArray):
       cv2.putText(m.array,"rfHB:", hb_org, font, scale
          , sysColors.green, self.draw_thickness)
       x_offset: int = 65; x, y = hb_org
-      cv2.putText(m.array, self.last_rf_hb, (x + x_offset, y), font, scale
-         , sysColors.green, self.draw_thickness)
+      cv2.putText(m.array, self.last_rf_hb, (x + x_offset, y)
+         , font, scale, sysColors.green, self.draw_thickness)

@@ -4,6 +4,7 @@ import typing as t
 import threading as th
 from pynput import keyboard as kbd
 # -- core --
+from datatypes.structs import *
 from core.devPort import devPort
 
 
@@ -85,20 +86,11 @@ class radioSim(object):
       finally:
          pass
 
+   """
+      ai_cmd = "kbd.Key.down", ai_cmd = "kbd.Key.up"
+   """
    def __get_ai_tag(self, key: kbd.Key) -> bytes | None:
-      if key == kbd.Key.down:
-         ai_cmd = "kbd.Key.down"
-      elif key == kbd.Key.up:
-         ai_cmd = "kbd.Key.up"
-      elif key == kbd.Key.left:
-         ai_cmd = "kbd.Key.left"
-      elif key == kbd.Key.right:
-         ai_cmd = "kbd.Key.right"
-      elif key == kbd.Key.enter:
-         ai_cmd: str = str(kbd.Key.enter)
-      else:
-         print(f"other key: {key}")
-         return None
+      ai_cmd: str = self.__key_to_cmd(key)
       # -- -- -- --
       xbuff0: str = uuid.uuid1().hex[:16]
       xbuff1: str = uuid.uuid1().hex[:16]
@@ -110,3 +102,18 @@ class radioSim(object):
       xbuff0: str = uuid.uuid1().hex[:16]
       xbuff1: str = uuid.uuid1().hex[:16]
       return bytes(f"{xbuff0}_AI:[#HB#]_{xbuff1}", "utf-8")
+
+   def __key_to_cmd(self, key: kbd.Key) -> str:
+      if key == kbd.Key.down:
+         return sysNav.PRV_MODE
+      elif key == kbd.Key.up:
+         return sysNav.NXT_MODE
+      elif key == kbd.Key.left:
+         return sysNav.PRV_ACTON
+      elif key == kbd.Key.right:
+         return sysNav.NXT_ACTON
+      elif key == kbd.Key.enter:
+         return str(kbd.Key.enter)
+      else:
+         print(f"other key: {key}")
+         return ""

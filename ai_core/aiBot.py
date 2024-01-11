@@ -1,6 +1,5 @@
 
 import time
-import typing as t
 import threading as th
 import configparser as cp
 # -- ai space --
@@ -22,14 +21,17 @@ class aiBot(object):
    def __init__(self, ini: cp.ConfigParser):
       self.ini: cp.ConfigParser = ini
       self.rxtx_arr_in: t.List[bytes] = []
-      self.hive_lnk: hiveLinkMon = hiveLinkMon()
+      # -- -- -- --
+      self.ai_hiveLnk: hiveLinkMon = hiveLinkMon()
+      self.ai_mode: str = ""
+      self.ai_actOn: str = ""
+      self.ai_status: str = ""
       # -- -- -- --
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
       self.sens_thread: th.Thread = t.Any
       self.ai_status_thread: th.Thread = t.Any
       # -- -- -- --
-      # self.kill_mode: aiKillMode = aiKillMode()
       self.ai_tacking: aiTracking = aiTracking()
       self.hb_icons: hbIcons = hbIcons()
       self.ai_modes: aiModes = aiModes()
@@ -74,7 +76,7 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif b'[#HB#]' in bmsg:
-               self.hive_lnk.hb_tick()
+               self.ai_hiveLnk.hb_tick()
                self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next(0)
                return 0
             # -- -- -- --
