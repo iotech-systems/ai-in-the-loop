@@ -10,7 +10,7 @@ col_green = (0, 255, 0)
 # -- OSD positions --
 top_ln = 30
 dts_org = (20, top_ln)
-hb_org = (320, top_ln)
+hb_org = (330, top_ln)
 ai_mode_org = (440, top_ln)
 ai_stat_org = (450, (top_ln * 2))
 baro_org = (80, 466)
@@ -66,6 +66,6 @@ class vtxOverlay(object):
          , self.targ_box_color, self.draw_thickness)
 
    def __rf_hb(self, m: MappedArray):
-      strbuff: str = f"HB: {self.last_rf_hb}"
+      strbuff: str = f"rfHB: {self.last_rf_hb}"
       cv2.putText(m.array, strbuff, hb_org, font, scale
          , sysColors.green, self.draw_thickness)
