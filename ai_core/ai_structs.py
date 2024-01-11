@@ -6,7 +6,8 @@ from collections import deque
 
 class aiModes(object):
 
-   m: [] = ["KILL/cm", "KILL/sm", "SEEK/kill", "TRK/v0", "TRK/v1", "TRK/v2", "TRK/onscr"]
+   m: [] = ["KILL/cm", "KILL/sm", "SEEK/kill", "TRK/v0", "TRK/v1", "TRK/v2"
+      , "TRK/onscr", "RTN/rfHB:OK"]
 
    def __init__(self):
       self.modes: deque = deque()
