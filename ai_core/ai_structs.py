@@ -44,7 +44,7 @@ class aiTracking(object):
 
 class hbIcons(object):
 
-   bullet = chr(0x95)
+   bullet = u'\u0095'
    icoLock: Lock = Lock()
    okIco: [] = ["O", bullet]
    wrIco: [] = ["?", "!"]
