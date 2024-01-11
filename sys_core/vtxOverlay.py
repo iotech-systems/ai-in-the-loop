@@ -44,7 +44,7 @@ class vtxOverlay(object):
          self.__target_box(m)
 
    def __datetime(self, m: MappedArray):
-      timestamp = time.strftime("%Y/%m/%d %X")
+      timestamp = time.strftime("'%y/%m/%d %X")
       cv2.putText(m.array, timestamp, dts_org, font, scale
          , sysColors.green, self.draw_thickness)
 
