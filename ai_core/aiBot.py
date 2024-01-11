@@ -52,23 +52,23 @@ class aiBot(object):
                return 1
             bmsg: bytes = self.rxtx_arr_in.pop()
             # -- ai target mode --
-            if b'kbd.Key.up' in bmsg:
+            if b'[#kbd.Key.up#]' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
-            elif b'kbd.Key.left' in bmsg:
+            elif b'[#kbd.Key.left#]' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
                return 0
-            elif b'kbd.Key.down' in bmsg:
+            elif b'[#kbd.Key.down#]' in bmsg:
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif b'[#HB#]' in bmsg:
-
+               print(bmsg)
                return 0
             # -- -- -- --
             return 100

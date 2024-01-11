@@ -34,6 +34,13 @@ if len(tmp) != FILES_TO_LOAD_CNT:
    print(f"BadIniLoad: {len(tmp)}")
    exit(1)
 
+
+# todo: later
+# -- create rf-tx in/pilot --
+
+# -- create rf-tx out/fc --
+
+
 # -- create ai bot --
 AI_BOT: aiBot = aiBot(ini=INI_OBJ)
 AI_BOT.init()

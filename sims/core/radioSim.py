@@ -10,10 +10,11 @@ from core.devPort import devPort
 class radioSim(object):
 
    # 9600, 14400, 19200, 38400, 57600, 115200
-   # run at 100hz so every 10ms
-   SLEEP_SECS: float = 0.01
+   # 0.01 run at 100hz so every 10ms
+   # 0.02 run at 50hz so every 20ms
+   SLEEP_SECS: float = 0.02
    # SLEEP_SECS: float = 1.0
-   HB_SLEEP_SECS: float = 0.200
+   HB_SLEEP_SECS: float = 0.25
 
    def __init__(self, dev: str, baud: int):
       self.dev: str = dev
@@ -27,17 +28,28 @@ class radioSim(object):
    def init(self):
       self.dev_port: devPort = devPort(dev=self.dev, baud=self.baud)
       self.main_thread: th.Thread = th.Thread(target=self.__main_thread)
-      self.kbd_thread: th.Thread = th.Thread(target=self.__kbd_start)
       self.hb_thread: th.Thread = th.Thread(target=self.__hb_thread)
+      # -- this should be last --
+      self.kbd_thread: th.Thread = th.Thread(target=self.__kbd_start)
 
    def start(self):
       self.main_thread.start()
-      self.kbd_thread.start()
       self.hb_thread.start()
+      # -- -- this has to be last -- --
+      self.kbd_thread.start()
 
    def __hb_thread(self):
-      with True:
-         time.sleep(radioSim.HB_SLEEP_SECS)
+      time.sleep(2.0)
+      print("[ __hb_thread ]")
+      while True:
+         try:
+            bmsg: bytes = self.__get_ai_heartbeat()
+            self.dev_port.send_bytes(msg=bmsg, withEcho=True)
+            time.sleep(radioSim.HB_SLEEP_SECS)
+         except Exception as e:
+            print(e)
+         finally:
+            pass
 
    def __kbd_start(self):
       with kbd.Listener(on_press=self.__on_key_press,
@@ -45,7 +57,6 @@ class radioSim(object):
          _l.join()
 
    def __main_thread(self):
-      # -- -- -- --
       def __tick():
          try:
             bbuff: bytes = self.__get_next_buff()
@@ -76,27 +87,24 @@ class radioSim(object):
 
    def __get_ai_tag(self, key: kbd.Key) -> bytes | None:
       if key == kbd.Key.down:
-         ai_buff = "kbd.Key.down"
+         ai_cmd = "kbd.Key.down"
       elif key == kbd.Key.up:
-         ai_buff = "kbd.Key.up"
+         ai_cmd = "kbd.Key.up"
       elif key == kbd.Key.left:
-         ai_buff = "kbd.Key.left"
+         ai_cmd = "kbd.Key.left"
       elif key == kbd.Key.right:
-         ai_buff = "kbd.Key.right"
+         ai_cmd = "kbd.Key.right"
       else:
          print("other key")
          return None
       # -- -- -- --
       xbuff0: str = uuid.uuid1().hex[:16]
       xbuff1: str = uuid.uuid1().hex[:16]
-      buff: str = f"{xbuff0}_AI:[{ai_buff}]_{xbuff1}"
+      buff: str = f"{xbuff0}_AI:[#{ai_cmd}#]_{xbuff1}"
       # -- -- -- --
       return bytes(buff, "utf-8")
 
    def __get_ai_heartbeat(self):
-      # -- -- -- --
       xbuff0: str = uuid.uuid1().hex[:16]
       xbuff1: str = uuid.uuid1().hex[:16]
-      buff: str = f"{xbuff0}_AI:[#HB#]_{xbuff1}"
-      # -- -- -- --
-      return bytes(buff, "utf-8")
+      return bytes(f"{xbuff0}_AI:[#HB#]_{xbuff1}", "utf-8")

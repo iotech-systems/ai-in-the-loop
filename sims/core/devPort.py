@@ -23,4 +23,7 @@ class devPort(object):
       except Exception as e:
          print(e)
       finally:
-         devPort.THLOCK.release()
+         try:
+            devPort.THLOCK.release()
+         finally:
+            pass
