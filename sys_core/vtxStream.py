@@ -24,6 +24,7 @@ class vtxStream(object):
    def init_cam(self):
       if self.cam_code == "PICAM2":
          vtxStream.cam = Picamera2()
+         vtxStream.cam.video_configuration.controls.FrameRate = 20.0
          vtxStream.cam.pre_callback = self.vtxoverlay.update
          vtxStream.cam_conf = vtxStream.cam.create_preview_configuration(CONF)
          vtxStream.cam.configure(vtxStream.cam_conf)
