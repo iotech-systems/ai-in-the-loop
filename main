@@ -6,6 +6,7 @@ import configparser as cp
 # -- system --
 from ai_core.aiBot import aiBot
 from sys_core.rxtxRouter import rxtxRouter
+from sys_core.rxtxPipeQ import rxtxPipeQ
 
 
 # -- process input args --
@@ -37,7 +38,7 @@ if len(tmp) != FILES_TO_LOAD_CNT:
 
 # todo: later
 # -- create rf-tx in/pilot --
-
+# AIR_IN: rxtxPipeQ = rxtxPipeQ(pipe_str="AIR_IN")
 # -- create rf-tx out/fc --
 
 

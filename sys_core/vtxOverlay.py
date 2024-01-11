@@ -7,15 +7,18 @@ from sys_core.sysColors import sysColors
 
 # -- color r, g, b --
 col_green = (0, 255, 0)
-dts_org = (20, 30)
-ai_mode_org = (440, 30)
-ai_stat_org = (450, 60)
+# -- OSD positions --
+top_ln = 30
+dts_org = (20, top_ln)
+hb_org = (300, top_ln)
+ai_mode_org = (440, top_ln)
+ai_stat_org = (450, (top_ln * 2))
 baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
 # -- -- text & etc -- --
 scale = 0.72
-font = cv2.FONT_HERSHEY_SIMPLEX
+font = cv2.FONT_HERSHEY_PLAIN #cv2.FONT_HERSHEY_SIMPLEX
 
 
 class vtxOverlay(object):
@@ -60,3 +63,8 @@ class vtxOverlay(object):
    def __target_box(self, m: MappedArray):
       cv2.rectangle(m.array, targ_org_s, targ_org_e
          , self.targ_box_color, self.draw_thickness)
+
+   def __rf_hb(self, m: MappedArray):
+      strbuff: str = f"HB: X"
+      cv2.putText(m.array, strbuff, hb_org, font, scale
+         , sysColors.green, self.draw_thickness)
