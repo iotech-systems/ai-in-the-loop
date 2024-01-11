@@ -35,6 +35,7 @@ class vtxOverlay(object):
    def update(self, req):
       with MappedArray(req, "main") as m:
          self.__datetime(m)
+         self.__rf_hb(m)
          self.__ai_mode(m)
          self.__ai_status(m)
          self.__baro_temp(m)
