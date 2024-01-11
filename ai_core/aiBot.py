@@ -72,12 +72,17 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
                return 0
-            elif b'[#kbd.Key.down#]' in str_msg:
+            elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
-            elif b'[#HB#]' in str_msg:
+            elif f"[#{aiNav.AI_PRV_ACTON.name}#]" in str_msg:
+               self.vtx_stream.vtxoverlay.ai_mode = "OFF"
+               self.vtx_stream.vtxoverlay.draw_thickness = 2
+               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
+               return 0
+            elif f"[#HB#]" in str_msg:
                self.ai_hiveLnk.hb_tick()
                self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next(0)
                return 0
