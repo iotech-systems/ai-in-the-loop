@@ -3,8 +3,10 @@ import time
 import typing as t
 import threading as th
 import configparser as cp
-# -- system --
-from ai_core.datastructs import *
+# -- ai space --
+from ai_core.ai_structs import *
+from ai_core.hiveLinkMon import hiveLinkMon
+# -- sys core --
 from sys_core.vtxStream import vtxStream
 from sys_core.sysColors import sysColors
 from sys_core.sensStream import sensStream
@@ -20,6 +22,7 @@ class aiBot(object):
    def __init__(self, ini: cp.ConfigParser):
       self.ini: cp.ConfigParser = ini
       self.rxtx_arr_in: t.List[bytes] = []
+      self.hive_lnk: hiveLinkMon = hiveLinkMon()
       # -- -- -- --
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
@@ -71,7 +74,8 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif b'[#HB#]' in bmsg:
-               self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next()
+               self.hive_lnk.hb_tick()
+               self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next(0)
                return 0
             # -- -- -- --
             return 100

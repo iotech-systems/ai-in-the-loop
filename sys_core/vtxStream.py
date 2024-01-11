@@ -2,6 +2,7 @@
 import os
 import threading as th
 import cv2, time, typing as t
+# from libcamera import ColorSpace
 from picamera2 import Picamera2, Preview
 # -- -- system -- --
 from sys_core.vtxOverlay import vtxOverlay
@@ -21,12 +22,17 @@ class vtxStream(object):
       self.vtxoverlay: vtxOverlay = vtxOverlay()
       self.main_thread: th.Thread = th.Thread(target=self.__main_thread)
 
+   """
+      colour_space=ColorSpace.Sycc()
+   """
    def init_cam(self):
       if self.cam_code == "PICAM2":
          vtxStream.cam = Picamera2()
          vtxStream.cam.video_configuration.controls.FrameRate = 20.0
          vtxStream.cam.pre_callback = self.vtxoverlay.update
-         vtxStream.cam_conf = vtxStream.cam.create_preview_configuration(CONF)
+         # picam2.create_preview_configuration(colour_space=ColorSpace.Sycc())
+         vtxStream.cam_conf \
+            = vtxStream.cam.create_preview_configuration()
          vtxStream.cam.configure(vtxStream.cam_conf)
       else:
          pass

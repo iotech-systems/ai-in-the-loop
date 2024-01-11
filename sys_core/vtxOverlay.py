@@ -3,6 +3,7 @@ import cv2, time
 from picamera2 import MappedArray
 # -- system --
 from sys_core.sysColors import sysColors
+from sys_core.targetBox import targetBox
 
 
 # -- color r, g, b --
@@ -30,6 +31,7 @@ class vtxOverlay(object):
       self.targ_box_color = sysColors.sleep
       self.draw_thickness = 2
       self.last_rf_hb: str = "X"
+      self.trg_box: targetBox = targetBox()
 
    def update(self, req):
       with MappedArray(req, "main") as m:
@@ -38,6 +40,7 @@ class vtxOverlay(object):
          self.__ai_mode(m)
          self.__ai_status(m)
          self.__baro_temp(m)
+         # -- target box --
          self.__target_box(m)
 
    def __datetime(self, m: MappedArray):
@@ -62,6 +65,7 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __target_box(self, m: MappedArray):
+
       cv2.rectangle(m.array, targ_org_s, targ_org_e
          , self.targ_box_color, self.draw_thickness)
 
