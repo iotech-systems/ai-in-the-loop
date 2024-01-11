@@ -46,7 +46,7 @@ class hbIcons(object):
 
    bullet = u'\u0095'
    icoLock: Lock = Lock()
-   okIco: [] = ["O", bullet]
+   okIco: [] = ["O", "*"]
    wrIco: [] = ["?", "!"]
    erIco: [] = ["X", "-"]
 
