@@ -68,7 +68,7 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif b'[#HB#]' in bmsg:
-               print(f"\tAI: {bmsg}")
+               print(f"\n\tAI: {bmsg}\n")
                return 0
             # -- -- -- --
             return 100
