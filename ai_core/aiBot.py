@@ -2,6 +2,8 @@
 import time
 import threading as th
 import configparser as cp
+# -- shared --
+from shared.datatypes.structs import *
 # -- ai space --
 from ai_core.ai_structs import *
 from ai_core.hiveLinkMon import hiveLinkMon
@@ -59,7 +61,7 @@ class aiBot(object):
                return 1
             bmsg: bytes = self.rxtx_arr_in.pop()
             # -- ai target mode --
-            if b'[#kbd.Key.up#]' in bmsg:
+            if f"[#{sysNav.NXT_MODE}#]" in str(bmsg):
                # self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
