@@ -52,7 +52,7 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __ai_mode(self, m: MappedArray):
-      x_offset: int = 60
+      x_offset: int = 58
       cv2.putText(m.array, "AIm:", ai_mode_org, font, scale
          , sysColors.green, self.draw_thickness)
       txtcolor: () = sysColors.green
