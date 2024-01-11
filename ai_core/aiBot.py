@@ -26,7 +26,7 @@ class aiBot(object):
       self.sens_thread: th.Thread = t.Any
       self.ai_status_thread: th.Thread = t.Any
       # -- -- -- --
-      self.kill_mode: aiKillMode = aiKillMode()
+      # self.kill_mode: aiKillMode = aiKillMode()
       self.ai_tacking: aiTracking = aiTracking()
       self.hb_icons: hbIcons = hbIcons()
       self.ai_modes: aiModes = aiModes()
@@ -61,7 +61,7 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif b'[#kbd.Key.left#]' in bmsg:
-               self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
+               # self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
                return 0
