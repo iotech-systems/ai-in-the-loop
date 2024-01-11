@@ -10,7 +10,7 @@ col_green = (0, 255, 0)
 # -- OSD positions --
 top_ln = 30
 dts_org = (20, top_ln)
-hb_org = (330, top_ln)
+hb_org = (320, top_ln)
 ai_mode_org = (440, top_ln)
 ai_stat_org = (450, (top_ln * 2))
 baro_org = (80, 466)
