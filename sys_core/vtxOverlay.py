@@ -13,7 +13,8 @@ top_ln = 30
 dts_org = (20, top_ln)
 hb_org = (300, top_ln)
 ai_mode_org = (420, top_ln)
-ai_stat_org = (430, (top_ln * 2))
+ai_actv_org = (430, (top_ln * 2))
+ai_stat_org = (430, (top_ln * 3))
 baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
@@ -38,6 +39,7 @@ class vtxOverlay(object):
          self.__datetime(m)
          self.__rf_hb(m)
          self.__ai_mode(m)
+         self.__ai_act_on(m)
          self.__ai_status(m)
          self.__baro_temp(m)
          # -- target box --
@@ -62,6 +64,17 @@ class vtxOverlay(object):
          txtcolor: () = sysColors.d_yellow
       x, y = ai_stat_org
       cv2.putText(m.array, self.ai_stat, ((x + x_offset), y), font, scale
+         , txtcolor, self.draw_thickness)
+
+   def __ai_act_on(self, m: MappedArray):
+      x_offset: int = 50
+      cv2.putText(m.array, "AIa:", ai_actv_org, font, scale
+         , sysColors.green, self.draw_thickness)
+      # txtcolor: () = sysColors.green
+      # if self.ai_stat in ["RDY"]:
+      txtcolor: () = sysColors.d_yellow
+      x, y = ai_actv_org
+      cv2.putText(m.array, "rfHB:err", ((x + x_offset), y), font, scale
          , txtcolor, self.draw_thickness)
 
    def __baro_temp(self, m: MappedArray):
