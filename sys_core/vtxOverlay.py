@@ -8,7 +8,7 @@ from sys_core.sysColors import sysColors
 # -- color r, g, b --
 col_green = (0, 255, 0)
 dts_org = (20, 30)
-mode_org = (440, 30)
+mode_org = (420, 30)
 baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
@@ -39,7 +39,7 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    def __mode(self, m: MappedArray):
-      mode: str = f"AI: {self.ai_mode}"
+      mode: str = f"AIm: {self.ai_mode}"
       cv2.putText(m.array, mode, mode_org, font, scale
          , sysColors.green, self.draw_thickness)
 
