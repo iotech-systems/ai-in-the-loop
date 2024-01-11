@@ -4,21 +4,23 @@ from threading import Lock
 from collections import deque
 
 
-# class aiKillMode(object):
-#
-#    def __init__(self):
-#       self.modes: deque = deque()
-#       self.modes.extend(["KILL-CM", "KILL-SM"])
-#
-#    def next(self) -> str:
-#       tmp: str = self.modes.popleft()
-#       self.modes.append(tmp)
-#       return tmp
-
-
 class aiModes(object):
 
    m: [] = ["KILL/cm", "KILL/sm", "SEEK/kill", "TRK/v0", "TRK/v1", "TRK/v2", "TRK/onscr"]
+
+   def __init__(self):
+      self.modes: deque = deque()
+      self.modes.extend(aiModes.m)
+
+   def next(self) -> str:
+      tmp: str = self.modes.popleft()
+      self.modes.append(tmp)
+      return tmp
+
+
+class aiActOn(object):
+
+   m: [] = ["OFF", "rfHB:err", "key:enter"]
 
    def __init__(self):
       self.modes: deque = deque()

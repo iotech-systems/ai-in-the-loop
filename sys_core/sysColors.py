@@ -6,3 +6,4 @@ class sysColors(object):
    blue = (0, 0, 255)
    sleep = (180, 180, 188)
    d_yellow = (242, 201, 15)
+   grey_a = (127, 126, 133)
