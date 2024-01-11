@@ -60,23 +60,24 @@ class aiBot(object):
             if len(self.rxtx_arr_in) == 0:
                return 1
             # -- -- -- --
-            bmsg: bytes = self.rxtx_arr_in.pop()
-            if f"[#{aiNav.AI_NXT_MODE.name}#]" in str(bmsg):
-               self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.next()
+            bytes_msg: bytes = self.rxtx_arr_in.pop()
+            str_msg: str = str(bytes_msg)
+            if f"[#{aiNav.AI_NXT_MODE.name}#]" in str_msg:
+               self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.nxt()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
-            elif f"[#{aiNav.AI_PRV_MODE.name}#]" in bmsg:
-               # self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
+            elif f"[#{aiNav.AI_PRV_MODE.name}#]" in str_msg:
+               self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.prv()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
                return 0
-            elif b'[#kbd.Key.down#]' in bmsg:
+            elif b'[#kbd.Key.down#]' in str_msg:
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
-            elif b'[#HB#]' in bmsg:
+            elif b'[#HB#]' in str_msg:
                self.ai_hiveLnk.hb_tick()
                self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next(0)
                return 0

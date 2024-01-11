@@ -13,11 +13,16 @@ class aiModes(object):
       self.modes: deque = deque()
       self.modes.extend(aiModes.m)
 
-   def next(self) -> str:
+   def nxt(self) -> str:
       tmp: str = self.modes.popleft()
       self.modes.append(tmp)
       return tmp
 
+   def prv(self) -> str:
+      self.modes.reverse()
+      tmp: str = self.modes.popleft()
+      self.modes.append(tmp)
+      return tmp
 
 class aiActOn(object):
 
