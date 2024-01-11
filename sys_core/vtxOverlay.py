@@ -17,8 +17,9 @@ baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
 # -- -- text & etc -- --
-scale: float = 1.5
-font = cv2.FONT_HERSHEY_PLAIN #cv2.FONT_HERSHEY_SIMPLEX
+scale: float = 0.72
+# cv2.FONT_HERSHEY_PLAIN
+font = cv2.FONT_HERSHEY_SIMPLEX
 
 
 class vtxOverlay(object):
