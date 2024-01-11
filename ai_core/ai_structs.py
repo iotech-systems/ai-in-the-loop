@@ -2,6 +2,7 @@
 import typing as t
 from threading import Lock
 from collections import deque
+from shared.datatypes.structs import aiNavDir
 
 
 class aiModes(object):
@@ -12,14 +13,20 @@ class aiModes(object):
    def __init__(self):
       self.modes: deque = deque()
       self.modes.extend(aiModes.m)
+      self.dir: aiNavDir = aiNavDir.FORWARD
 
    def nxt(self) -> str:
+      if self.dir == aiNavDir.REVERSE:
+         self.modes.reverse()
+         self.dir = aiNavDir.FORWARD
       tmp: str = self.modes.popleft()
       self.modes.append(tmp)
       return tmp
 
    def prv(self) -> str:
-      self.modes.reverse()
+      if self.dir == aiNavDir.FORWARD:
+         self.modes.reverse()
+         self.dir = aiNavDir.REVERSE
       tmp: str = self.modes.popleft()
       self.modes.append(tmp)
       return tmp

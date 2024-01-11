@@ -2,6 +2,11 @@
 import enum
 
 
+class aiNavDir(enum.IntEnum):
+   FORWARD = 0
+   REVERSE = 1
+
+
 class aiNav(enum.IntEnum):
    AI_NXT_MODE = 0
    AI_PRV_MODE = 1
@@ -21,3 +26,4 @@ sysNavKeys: {} = {"Key.up": aiNav.AI_NXT_MODE
    , "Key.f3": aiNav.AI_DISARM
    , "Key.f4": aiNav.AI_RUN
    , "Key.f5": aiNav.AI_STOP}
+
