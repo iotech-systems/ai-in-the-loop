@@ -14,7 +14,7 @@ class radioSim(object):
    # 0.01 run at 100hz so every 10ms
    # 0.02 run at 50hz so every 20ms
    # SLEEP_SECS: float = 0.02
-   SLEEP_SECS: float = 2.0
+   SLEEP_SECS: float = 4.0
    HB_SLEEP_SECS: float = 0.25
 
    def __init__(self, dev: str, baud: int):
@@ -104,16 +104,8 @@ class radioSim(object):
       return bytes(f"{xbuff0}_AI:[#HB#]_{xbuff1}", "utf-8")
 
    def __key_to_cmd(self, key: kbd.Key) -> str:
-      if key == kbd.Key.down:
-         return sysNav.PRV_MODE
-      elif key == kbd.Key.up:
-         return sysNav.NXT_MODE
-      elif key == kbd.Key.left:
-         return sysNav.PRV_ACTON
-      elif key == kbd.Key.right:
-         return sysNav.NXT_ACTON
-      elif key == kbd.Key.enter:
-         return str(kbd.Key.enter)
+      key_str: str = str(key)
+      if key_str in sysNavKeys.keys():
+         return sysNavKeys[key_str].name
       else:
-         print(f"other key: {key}")
-         return ""
+         print(f"BadKeyPress: {key_str}")

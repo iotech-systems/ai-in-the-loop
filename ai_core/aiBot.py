@@ -59,15 +59,14 @@ class aiBot(object):
          try:
             if len(self.rxtx_arr_in) == 0:
                return 1
+            # -- -- -- --
             bmsg: bytes = self.rxtx_arr_in.pop()
-            # -- ai target mode --
-            if f"[#{sysNav.NXT_MODE}#]" in str(bmsg):
-               # self.vtx_stream.vtxoverlay.ai_mode = self.ai_tacking.next()
+            if f"[#{aiNav.AI_NXT_MODE.name}#]" in str(bmsg):
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
-            elif b'[#kbd.Key.left#]' in bmsg:
+            elif f"[#{aiNav.AI_PRV_MODE.name}#]" in bmsg:
                # self.vtx_stream.vtxoverlay.ai_mode = self.kill_mode.next()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.red
