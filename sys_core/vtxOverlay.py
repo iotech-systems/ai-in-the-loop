@@ -8,7 +8,7 @@ from sys_core.sysColors import sysColors
 # -- color r, g, b --
 col_green = (0, 255, 0)
 dts_org = (20, 30)
-mode_org = (420, 30)
+mode_org = (440, 30)
 baro_org = (80, 466)
 targ_org_s = (210, 130)
 targ_org_e = (430, 350)
