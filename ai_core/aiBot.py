@@ -103,7 +103,6 @@ class aiBot(object):
             # -- -- HEARTBEAT -- --
             elif f"[#HB#]" in str_msg:
                self.ai_hiveLnk.hb_tick()
-               # self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next(0)
                return 0
             # -- -- -- --
             return 100

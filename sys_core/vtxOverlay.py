@@ -106,5 +106,11 @@ class vtxOverlay(object):
       cv2.putText(m.array,"rfHB:", hb_org, font, scale
          , sysColors.green, self.draw_thickness)
       x_offset: int = 65; x, y = hb_org
+      sym_color: () = sysColors.blue
+      if self.last_rf_hb in ["?", "!"]:
+         sym_color = sysColors.d_yellow
+      if self.last_rf_hb in ["X", "-"]:
+         sym_color = sysColors.red_1
+      # -- -- -- --
       cv2.putText(m.array, self.last_rf_hb, (x + x_offset, y)
-         , font, scale, sysColors.green, self.draw_thickness)
+         , font, scale, sym_color, self.draw_thickness)
