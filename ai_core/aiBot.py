@@ -134,9 +134,11 @@ class aiBot(object):
       asyncio.run(arm_action())
 
    def __ai_status_thread(self):
-      if self.ai_hiveLnk.link_status == 2 and self.ai_status == keyWords.ARMED:
-         self.ai_status = keyWords.AI_ACTIVE
-         self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
+      while True:
+         if self.ai_hiveLnk.link_status == 2 and self.ai_status == keyWords.ARMED:
+            self.ai_status = keyWords.AI_ACTIVE
+            self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
+         time.sleep(0.240)
 
    def __sens_thread(self):
       def __tick():
