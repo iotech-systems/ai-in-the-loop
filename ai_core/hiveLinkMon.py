@@ -1,8 +1,8 @@
 
 import datetime as dt
 import threading as th
-import time
-
+import time, asyncio
+# -- system --
 from ai_core.ai_structs import hbIcons
 from sys_core.vtxOverlay import vtxOverlay
 
@@ -12,6 +12,7 @@ class hiveLinkMon(object):
    on_link_broken: callable = None
    MAX_GAP_SECS: float = 0.800
    MAX_GAP_DELAY: float = 2.0
+   MAX_GAP_CALLBACK: float = 4.0
 
    def __init__(self, overlay: vtxOverlay):
       self.overlay: vtxOverlay = overlay
@@ -19,9 +20,13 @@ class hiveLinkMon(object):
       self.hb_icons: hbIcons = hbIcons()
       self.run_thread: th.Thread = th.Thread(target=self.__run_thread)
       self.run_thread.start()
+      self.callback_running: bool = False
 
    def hb_tick(self):
       self.dts_last_hbtick = dt.datetime.now()
+
+   async def __on_callback(self):
+      print("__on_callback")
 
    def __run_thread(self):
       while True:
@@ -36,4 +41,7 @@ class hiveLinkMon(object):
             continue
          if total_seconds > hiveLinkMon.MAX_GAP_DELAY:
             self.overlay.last_rf_hb = self.hb_icons.next(code=2)
+            if not self.callback_running:
+               self.callback_running = True
+               asyncio.run(self.__on_callback())
             continue
