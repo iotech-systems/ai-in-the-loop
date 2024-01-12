@@ -136,7 +136,7 @@ class aiBot(object):
    def __ai_status_thread(self):
       while True:
          if self.ai_hiveLnk.link_status == 2 and self.ai_status == keyWords.ARMED:
-            self.ai_status = keyWords.AI_ACTIVE
+            self.ai_status = keyWords.ACTIVE
             self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
          time.sleep(0.240)
 
