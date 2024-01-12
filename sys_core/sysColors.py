@@ -13,6 +13,7 @@ class sysColors(object):
    d_yellow = (242, 201, 15)
    grey_a = (127, 126, 133)
    rdy = (128, 163, 75)
+   armed = (166, 117, 113)
 
    @staticmethod
    def str_to_color(buff: str):
@@ -26,5 +27,7 @@ class sysColors(object):
          return sysColors.grey_a
       if keyWords.RDY in buff:
          return sysColors.rdy
+      if keyWords.ARMED in buff:
+         return sysColors.armed
       # -- -- -- --
       return sysColors.green
