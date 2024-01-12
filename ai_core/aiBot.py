@@ -68,18 +68,12 @@ class aiBot(object):
                   return 0
                self.ai_mode = self.ai_modes.nxt()
                self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
-               # self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
-               # self.vtx_stream.vtxoverlay.draw_thickness = 2
-               # self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_PRV_MODE.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
                self.ai_mode = self.ai_modes.prv()
                self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
-               # self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.prv()
-               # self.vtx_stream.vtxoverlay.draw_thickness = 2
-               # self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
@@ -94,15 +88,11 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.update(ai_a=self.ai_acton)
                return 0
             elif f"[#{aiNav.AI_ARM.name}#]" in str_msg:
-               self.ai_mode = keyWords.RDY
-               self.ai_acton = keyWords.RDY
-               self.ai_status = keyWords.RDY
+               self.__set_ai_vals(keyWords.RDY)
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
                return 0
             elif f"[#{aiNav.AI_DISARM.name}#]" in str_msg:
-               self.ai_mode = keyWords.OFF
-               self.ai_acton = keyWords.OFF
-               self.ai_status = keyWords.OFF
+               self.__set_ai_vals(keyWords.OFF)
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
                return 0
             elif f"[#HB#]" in str_msg:
@@ -121,6 +111,11 @@ class aiBot(object):
          tick_val: int = __tick()
          time.sleep(aiBot.SLEEP_SECS)
       # -- -- -- --
+
+   def __set_ai_vals(self, keyword):
+      self.ai_mode = keyword
+      self.ai_acton = keyword
+      self.ai_status = keyword
 
    def __ai_status_thread(self):
       pass
