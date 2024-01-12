@@ -18,38 +18,49 @@ class aiModes(object):
       , "TRK/onscr", "RTN/rfHB:OK", "RTN/home"]
 
    def __init__(self):
-      self.modes: deque = deque()
-      self.modes.extend(aiModes.m)
-      self.current_mode: str = ""
+      self.values: deque = deque()
+      self.values.extend(aiModes.m)
       self.dir: aiNavDir = aiNavDir.FORWARD
 
    def nxt(self) -> str:
       if self.dir == aiNavDir.REVERSE:
-         self.modes.reverse()
+         self.values.reverse()
          self.dir = aiNavDir.FORWARD
-      tmp: str = self.modes.popleft()
-      self.modes.append(tmp)
+      tmp: str = self.values.popleft()
+      self.values.append(tmp)
       return tmp
 
    def prv(self) -> str:
       if self.dir == aiNavDir.FORWARD:
-         self.modes.reverse()
+         self.values.reverse()
          self.dir = aiNavDir.REVERSE
-      tmp: str = self.modes.popleft()
-      self.modes.append(tmp)
+      tmp: str = self.values.popleft()
+      self.values.append(tmp)
       return tmp
 
 class aiActOn(object):
 
-   m: [] = ["OFF", "rfHB:err", "key:enter"]
+   m: [] = ["rfHB:err", "key:enter"]
 
    def __init__(self):
-      self.modes: deque = deque()
-      self.modes.extend(aiModes.m)
+      self.values: deque = deque()
+      self.values.extend(aiActOn.m)
+      self.dir: aiNavDir = aiNavDir.FORWARD
 
-   def next(self) -> str:
-      tmp: str = self.modes.popleft()
-      self.modes.append(tmp)
+   def nxt(self) -> str:
+      if self.dir == aiNavDir.REVERSE:
+         self.values.reverse()
+         self.dir = aiNavDir.FORWARD
+      tmp: str = self.values.popleft()
+      self.values.append(tmp)
+      return tmp
+
+   def prv(self) -> str:
+      if self.dir == aiNavDir.FORWARD:
+         self.values.reverse()
+         self.dir = aiNavDir.REVERSE
+      tmp: str = self.values.popleft()
+      self.values.append(tmp)
       return tmp
 
 
