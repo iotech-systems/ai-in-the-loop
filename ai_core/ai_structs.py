@@ -5,6 +5,13 @@ from collections import deque
 from shared.datatypes.structs import aiNavDir
 
 
+class keyWords(object):
+   ON: str = "ON"
+   OFF: str = "OFF"
+   ARMED: str = "ARMED"
+   RDY: str = "RDY"
+
+
 class aiModes(object):
 
    m: [] = ["KILL/cm", "KILL/sm", "SEEK/kill/cm", "TRK/v0", "TRK/v1", "TRK/v2"

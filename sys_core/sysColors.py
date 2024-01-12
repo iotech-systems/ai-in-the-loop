@@ -1,4 +1,6 @@
 
+from ai_core.ai_structs import keyWords
+
 
 class sysColors(object):
    red = (255, 0, 0)
@@ -19,5 +21,7 @@ class sysColors(object):
          return sysColors.d_yellow
       if "rtn" in buff.lower():
          return sysColors.purp_0
+      if keyWords.OFF in buff:
+         return sysColors.grey_a
       # -- -- -- --
       return sysColors.green

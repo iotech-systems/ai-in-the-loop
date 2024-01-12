@@ -83,9 +83,9 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif f"[#{aiNav.AI_DISARM.name}#]" in str_msg:
-               self.vtx_stream.vtxoverlay.ai_mode = "OFF"
-               self.vtx_stream.vtxoverlay.ai_act = "OFF"
-               self.vtx_stream.vtxoverlay.ai_stat = "OFF"
+               self.vtx_stream.vtxoverlay.ai_mode = keyWords.OFF
+               self.vtx_stream.vtxoverlay.ai_act = keyWords.OFF
+               self.vtx_stream.vtxoverlay.ai_stat = keyWords.OFF
                return 0
             elif f"[#HB#]" in str_msg:
                self.ai_hiveLnk.hb_tick()
