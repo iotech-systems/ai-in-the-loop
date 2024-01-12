@@ -5,6 +5,7 @@ from ai_core.ai_structs import keyWords
 class sysColors(object):
    red = (255, 0, 0)
    red_1 = (186, 6, 27)
+   red_2 = (173, 22, 9)
    green = (0, 255, 0)
    blue = (0, 0, 255)
    blue_1 = (25, 7, 122)
@@ -32,6 +33,6 @@ class sysColors(object):
       if ":" in buff:
          return sysColors.d_yellow
       if keyWords.AI_ACTIVE in buff:
-         return sysColors.red
+         return sysColors.red_2
       # -- -- -- --
       return sysColors.green
