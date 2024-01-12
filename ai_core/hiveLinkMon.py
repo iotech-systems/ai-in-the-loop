@@ -26,7 +26,7 @@ class hiveLinkMon(object):
       self.dts_last_hbtick = dt.datetime.now()
 
    async def __on_callback(self):
-      print("__on_callback")
+      print("\n\t[ __on_callback ]\n")
 
    def __run_thread(self):
       while True:
