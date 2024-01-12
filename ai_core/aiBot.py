@@ -125,6 +125,8 @@ class aiBot(object):
 
    def __arm_acton(self):
       async def arm_action():
+         self.ai_status = keyWords.RDY
+         self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
          await asyncio.sleep(1.2)
          self.ai_status = keyWords.ARMED
          self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
