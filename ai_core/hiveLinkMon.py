@@ -3,8 +3,7 @@ import datetime as dt
 import threading as th
 import time, asyncio
 # -- system --
-from ai_structs import keyWords
-from ai_core.ai_structs import hbIcons
+from ai_core.ai_structs import hbIcons, keyWords
 from sys_core.vtxOverlay import vtxOverlay
 
 
