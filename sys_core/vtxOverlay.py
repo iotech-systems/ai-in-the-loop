@@ -42,11 +42,11 @@ class vtxOverlay(object):
       self.ai_act = ai_a if ai_a is not None else self.ai_act
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   def refresh(self, req):
+   def call_on_frame(self, req):
       with MappedArray(req, "main") as m:
          self.__datetime(m)
          self.__rf_hb(m)
-         self.__ai_mode(m)
+         self.__ai_action(m)
          self.__ai_trigger_on(m)
          self.__ai_status(m)
          self.__baro_temp(m)
@@ -60,9 +60,9 @@ class vtxOverlay(object):
          , sysColors.green, self.draw_thickness)
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   def __ai_mode(self, m: MappedArray):
-      x_offset: int = 58
-      cv2.putText(m.array, "AI/m:", ai_mode_org, font, scale
+   def __ai_action(self, m: MappedArray):
+      x_offset: int = 56
+      cv2.putText(m.array, "AI/a:", ai_mode_org, font, scale
          , sysColors.green, self.draw_thickness)
       x, y = ai_mode_org
       txtcolor: () = sysColors.str_to_color(self.ai_mode)
@@ -71,7 +71,7 @@ class vtxOverlay(object):
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_status(self, m: MappedArray):
-      x_offset: int = 50
+      x_offset: int = 56
       cv2.putText(m.array, "AI/s:", ai_stat_org, font, scale
          , sysColors.green, self.draw_thickness)
       x, y = ai_stat_org
@@ -81,7 +81,7 @@ class vtxOverlay(object):
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_trigger_on(self, m: MappedArray):
-      x_offset: int = 50
+      x_offset: int = 56
       cv2.putText(m.array, "AI/t:", ai_actv_org, font
          , scale, sysColors.green, self.draw_thickness)
       txtcolor: () = sysColors.str_to_color(self.ai_act)
