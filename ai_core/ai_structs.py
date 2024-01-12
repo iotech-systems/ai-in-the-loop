@@ -10,7 +10,7 @@ class keyWords(object):
    OFF: str = "OFF"
    ARMED: str = "ARMED"
    RDY: str = "RDY"
-   AI_ACTIVE: str = "AI_ACTIVE"
+   ACTIVE: str = "ACTIVE"
 
 
 class aiModes(object):

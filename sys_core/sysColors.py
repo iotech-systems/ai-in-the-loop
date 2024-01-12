@@ -7,6 +7,7 @@ class sysColors(object):
    red_1 = (186, 6, 27)
    red_2 = (173, 22, 9)
    green = (0, 255, 0)
+   green_1 = (41, 122, 27)
    blue = (0, 0, 255)
    blue_1 = (25, 7, 122)
    purp_0 = (136, 11, 181)
@@ -32,7 +33,7 @@ class sysColors(object):
          return sysColors.armed
       if ":" in buff:
          return sysColors.d_yellow
-      if keyWords.AI_ACTIVE in buff:
-         return sysColors.red_2
+      if keyWords.ACTIVE in buff:
+         return sysColors.green_1
       # -- -- -- --
       return sysColors.green
