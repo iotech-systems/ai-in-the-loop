@@ -62,7 +62,7 @@ class vtxOverlay(object):
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_mode(self, m: MappedArray):
       x_offset: int = 58
-      cv2.putText(m.array, "AIm:", ai_mode_org, font, scale
+      cv2.putText(m.array, "AI|m:", ai_mode_org, font, scale
          , sysColors.green, self.draw_thickness)
       x, y = ai_mode_org
       txtcolor: () = sysColors.str_to_color(self.ai_mode)
@@ -72,7 +72,7 @@ class vtxOverlay(object):
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_status(self, m: MappedArray):
       x_offset: int = 50
-      cv2.putText(m.array, "AIs:", ai_stat_org, font, scale
+      cv2.putText(m.array, "AI|s:", ai_stat_org, font, scale
          , sysColors.green, self.draw_thickness)
       x, y = ai_stat_org
       txtcolor: () = sysColors.str_to_color(self.ai_stat)
@@ -82,7 +82,7 @@ class vtxOverlay(object):
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    def __ai_trigger_on(self, m: MappedArray):
       x_offset: int = 50
-      cv2.putText(m.array, "AIt:", ai_actv_org, font
+      cv2.putText(m.array, "AI|t:", ai_actv_org, font
          , scale, sysColors.green, self.draw_thickness)
       txtcolor: () = sysColors.str_to_color(self.ai_act)
       x, y = ai_actv_org
