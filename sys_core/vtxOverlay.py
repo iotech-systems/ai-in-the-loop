@@ -36,7 +36,13 @@ class vtxOverlay(object):
       self.trg_box: targetBox = targetBox()
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   def update(self, req):
+   def update(self, ai_m = None, ai_a = None, ai_s = None):
+      self.ai_mode = ai_m if ai_m is not None else self.ai_mode
+      self.ai_stat = ai_s if ai_s is not None else self.ai_stat
+      self.ai_act = ai_a if ai_a is not None else self.ai_act
+
+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   def refresh(self, req):
       with MappedArray(req, "main") as m:
          self.__datetime(m)
          self.__rf_hb(m)

@@ -26,7 +26,7 @@ class aiBot(object):
       # -- -- -- --
       self.ai_hiveLnk: hiveLinkMon = hiveLinkMon()
       self.ai_mode: str = ""
-      self.ai_actOn: str = ""
+      self.ai_acton: str = ""
       self.ai_status: str = ""
       # -- -- -- --
       self.msg_thread: th.Thread = t.Any
@@ -83,11 +83,18 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif f"[#{aiNav.AI_ARM.name}#]" in str_msg:
-               self.vtx_stream.vtxoverlay.ai_mode = keyWords.RDY
-               self.vtx_stream.vtxoverlay.ai_act = keyWords.RDY
-               self.vtx_stream.vtxoverlay.ai_stat = keyWords.RDY
+               self.ai_mode = keyWords.RDY
+               self.ai_acton = keyWords.RDY
+               self.ai_status = keyWords.RDY
+               self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
+               # self.vtx_stream.vtxoverlay.ai_mode = keyWords.RDY
+               # self.vtx_stream.vtxoverlay.ai_act = keyWords.RDY
+               # self.vtx_stream.vtxoverlay.ai_stat = keyWords.RDY
                return 0
             elif f"[#{aiNav.AI_DISARM.name}#]" in str_msg:
+               self.ai_mode = keyWords.OFF
+               self.ai_acton = keyWords.OFF
+               self.ai_status = keyWords.OFF
                self.vtx_stream.vtxoverlay.ai_mode = keyWords.OFF
                self.vtx_stream.vtxoverlay.ai_act = keyWords.OFF
                self.vtx_stream.vtxoverlay.ai_stat = keyWords.OFF
