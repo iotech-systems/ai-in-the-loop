@@ -31,5 +31,7 @@ class sysColors(object):
          return sysColors.armed
       if ":" in buff:
          return sysColors.d_yellow
+      if keyWords.AI_ACTIVE in buff:
+         return sysColors.red
       # -- -- -- --
       return sysColors.green
