@@ -63,21 +63,29 @@ class aiBot(object):
             bytes_msg: bytes = self.rxtx_arr_in.pop()
             str_msg: str = str(bytes_msg)
             if f"[#{aiNav.AI_NXT_MODE.name}#]" in str_msg:
+               if self.ai_status == keyWords.OFF:
+                  return 0
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.nxt()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_PRV_MODE.name}#]" in str_msg:
+               if self.ai_status == keyWords.OFF:
+                  return 0
                self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.prv()
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
+               if self.ai_status == keyWords.OFF:
+                  return 0
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
             elif f"[#{aiNav.AI_PRV_ACTON.name}#]" in str_msg:
+               if self.ai_status == keyWords.OFF:
+                  return 0
                self.vtx_stream.vtxoverlay.ai_mode = "OFF"
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
@@ -87,17 +95,12 @@ class aiBot(object):
                self.ai_acton = keyWords.RDY
                self.ai_status = keyWords.RDY
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
-               # self.vtx_stream.vtxoverlay.ai_mode = keyWords.RDY
-               # self.vtx_stream.vtxoverlay.ai_act = keyWords.RDY
-               # self.vtx_stream.vtxoverlay.ai_stat = keyWords.RDY
                return 0
             elif f"[#{aiNav.AI_DISARM.name}#]" in str_msg:
                self.ai_mode = keyWords.OFF
                self.ai_acton = keyWords.OFF
                self.ai_status = keyWords.OFF
-               self.vtx_stream.vtxoverlay.ai_mode = keyWords.OFF
-               self.vtx_stream.vtxoverlay.ai_act = keyWords.OFF
-               self.vtx_stream.vtxoverlay.ai_stat = keyWords.OFF
+               self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
                return 0
             elif f"[#HB#]" in str_msg:
                self.ai_hiveLnk.hb_tick()
