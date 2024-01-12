@@ -37,7 +37,7 @@ class aiBot(object):
       self.ai_tacking: aiTracking = aiTracking()
       self.hb_icons: hbIcons = hbIcons()
       self.ai_modes: aiModes = aiModes()
-      self.ai_acton: aiActOn = aiActOn()
+      self.ai_actons: aiActOn = aiActOn()
 
    def init(self):
       # -- init vtx cam --
@@ -80,16 +80,14 @@ class aiBot(object):
             elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
-               self.ai_acton = self.ai_acton.nxt()
+               self.ai_acton = self.ai_actons.nxt()
                self.vtx_stream.vtxoverlay.update(ai_a=self.ai_acton)
-               # self.vtx_stream.vtxoverlay.draw_thickness = 2
                return 0
             elif f"[#{aiNav.AI_PRV_ACTON.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
-               self.ai_acton = self.ai_acton.prv()
+               self.ai_acton = self.ai_actons.prv()
                self.vtx_stream.vtxoverlay.update(ai_a=self.ai_acton)
-               # self.vtx_stream.vtxoverlay.draw_thickness = 2
                return 0
             elif f"[#{aiNav.AI_ARM.name}#]" in str_msg:
                self.ai_mode = keyWords.RDY
