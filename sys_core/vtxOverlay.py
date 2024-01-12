@@ -27,7 +27,7 @@ class vtxOverlay(object):
 
    def __init__(self):
       self.ai_mode: str = "OFF"
-      self.ai_stat: str = "RDY"
+      self.ai_stat: str = "OFF"
       self.ai_act: str = "OFF"
       self.baro_temp: () = (0.0, 0.0, 0.0)
       self.targ_box_color = sysColors.sleep
@@ -78,11 +78,9 @@ class vtxOverlay(object):
       x_offset: int = 50
       cv2.putText(m.array, "AIa:", ai_actv_org, font
          , scale, sysColors.green, self.draw_thickness)
-      # txtcolor: () = sysColors.green
-      # if self.ai_stat in ["RDY"]:
-      txtcolor: () = sysColors.d_yellow
+      txtcolor: () = sysColors.str_to_color(self.ai_act)
       x, y = ai_actv_org
-      cv2.putText(m.array, "rfHB:err", ((x + x_offset), y)
+      cv2.putText(m.array, self.ai_act, ((x + x_offset), y)
          , font, scale, txtcolor, self.draw_thickness)
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
