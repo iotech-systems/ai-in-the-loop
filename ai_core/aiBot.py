@@ -54,6 +54,7 @@ class aiBot(object):
       self.sens_thread.start()
       self.main_thread.start()
       self.msg_thread.start()
+      self.ai_status_thread.start()
 
    def __msg_thread(self):
       # -- -- -- --
@@ -133,10 +134,9 @@ class aiBot(object):
       asyncio.run(arm_action())
 
    def __ai_status_thread(self):
-      if self.ai_hiveLnk.link_status == 2:
+      if self.ai_hiveLnk.link_status == 2 and self.ai_status == keyWords.ARMED:
          self.ai_status = keyWords.AI_ACTIVE
          self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
-
 
    def __sens_thread(self):
       def __tick():

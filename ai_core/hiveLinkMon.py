@@ -10,8 +10,8 @@ from sys_core.vtxOverlay import vtxOverlay
 class hiveLinkMon(object):
 
    MAX_GAP_SECS: float = 0.800
-   MAX_GAP_DELAY: float = 2.0
-   MAX_GAP_CALLBACK: float = 4.0
+   MAX_GAP_UNSTABLE: float = 2.0
+   MAX_GAP_DEAD: float = 4.0
 
    def __init__(self, overlay: vtxOverlay, ai_status: str):
       self.overlay: vtxOverlay = overlay
@@ -28,18 +28,15 @@ class hiveLinkMon(object):
    def __run_thread(self):
       # -- -- -- --
       while True:
-         time.sleep(0.200)
          delta: dt.timedelta = (dt.datetime.now() - self.dts_last_hbtick)
          total_seconds: float = delta.total_seconds()
          if total_seconds < hiveLinkMon.MAX_GAP_SECS:
             self.overlay.last_rf_hb = self.hb_icons.next(code=0)
             self.link_status = 0
-            continue
-         if hiveLinkMon.MAX_GAP_SECS < total_seconds < hiveLinkMon.MAX_GAP_DELAY:
+         if hiveLinkMon.MAX_GAP_SECS < total_seconds < hiveLinkMon.MAX_GAP_UNSTABLE:
             self.overlay.last_rf_hb = self.hb_icons.next(code=1)
             self.link_status = 1
-            continue
-         if total_seconds > hiveLinkMon.MAX_GAP_DELAY:
+         if total_seconds > hiveLinkMon.MAX_GAP_UNSTABLE:
             self.overlay.last_rf_hb = self.hb_icons.next(code=2)
             self.link_status = 2
-            continue
+         time.sleep(0.200)
