@@ -25,9 +25,9 @@ class aiBot(object):
       self.rxtx_arr_in: t.List[bytes] = []
       # -- -- -- --
       self.ai_hiveLnk: hiveLinkMon = hiveLinkMon()
-      self.ai_mode: str = ""
-      self.ai_acton: str = ""
-      self.ai_status: str = ""
+      self.ai_mode: str = keyWords.OFF
+      self.ai_acton: str = keyWords.OFF
+      self.ai_status: str = keyWords.OFF
       # -- -- -- --
       self.msg_thread: th.Thread = t.Any
       self.main_thread: th.Thread = t.Any
