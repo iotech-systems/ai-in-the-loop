@@ -47,7 +47,7 @@ class vtxOverlay(object):
          self.__datetime(m)
          self.__rf_hb(m)
          self.__ai_mode(m)
-         self.__ai_act_on(m)
+         self.__ai_trigger_on(m)
          self.__ai_status(m)
          self.__baro_temp(m)
          # -- target box --
@@ -80,9 +80,9 @@ class vtxOverlay(object):
          , font, scale, txtcolor, self.draw_thickness)
 
    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   def __ai_act_on(self, m: MappedArray):
+   def __ai_trigger_on(self, m: MappedArray):
       x_offset: int = 50
-      cv2.putText(m.array, "AIa:", ai_actv_org, font
+      cv2.putText(m.array, "AIt:", ai_actv_org, font
          , scale, sysColors.green, self.draw_thickness)
       txtcolor: () = sysColors.str_to_color(self.ai_act)
       x, y = ai_actv_org
