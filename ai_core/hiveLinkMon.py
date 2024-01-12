@@ -51,6 +51,7 @@ class hiveLinkMon(object):
             if not self.callback_running:
                self.callback_running = True
                print("calling callback....")
-               loop: asyncio.AbstractEventLoop = asyncio.get_event_loop()
-               loop.run_until_complete(__callback)
+               # loop: asyncio.AbstractEventLoop = asyncio.get_event_loop()
+               # loop.run_until_complete(__callback)
+               asyncio.run(__callback())
             continue
