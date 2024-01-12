@@ -34,6 +34,7 @@ class hiveLinkMon(object):
       async def __callback():
          asyncio.timeout(2.0)
          print("\n\t[ __on_callback ]\n")
+         return
       # -- -- -- --
       while True:
          time.sleep(0.200)
@@ -50,5 +51,6 @@ class hiveLinkMon(object):
             if not self.callback_running:
                self.callback_running = True
                print("calling callback....")
-               asyncio.run(__callback())
+               loop: asyncio.AbstractEventLoop = asyncio.get_event_loop()
+               loop.run_until_complete(__callback)
             continue
