@@ -87,11 +87,11 @@ class aiBot(object):
                self.ai_acton = self.ai_actons.prv()
                self.vtx_stream.vtxoverlay.update(ai_a=self.ai_acton)
                return 0
-            elif f"[#{aiNav.AI_ARM.name}#]" in str_msg:
+            elif f"[#{aiNav.AI_ON.name}#]" in str_msg:
                self.__set_ai_vals(keyWords.RDY)
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
                return 0
-            elif f"[#{aiNav.AI_DISARM.name}#]" in str_msg:
+            elif f"[#{aiNav.AI_OFF.name}#]" in str_msg:
                self.__set_ai_vals(keyWords.OFF)
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
                return 0
