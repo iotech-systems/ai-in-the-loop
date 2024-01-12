@@ -3,6 +3,7 @@ import datetime as dt
 import threading as th
 import time, asyncio
 # -- system --
+from ai_structs import keyWords
 from ai_core.ai_structs import hbIcons
 from sys_core.vtxOverlay import vtxOverlay
 
@@ -14,8 +15,9 @@ class hiveLinkMon(object):
    MAX_GAP_DELAY: float = 2.0
    MAX_GAP_CALLBACK: float = 4.0
 
-   def __init__(self, overlay: vtxOverlay):
+   def __init__(self, overlay: vtxOverlay, ai_status: str):
       self.overlay: vtxOverlay = overlay
+      self.ai_status: str = ai_status
       self.dts_last_hbtick = dt.datetime.min
       self.hb_icons: hbIcons = hbIcons()
       self.run_thread: th.Thread = th.Thread(target=self.__run_thread)
@@ -48,10 +50,8 @@ class hiveLinkMon(object):
             continue
          if total_seconds > hiveLinkMon.MAX_GAP_DELAY:
             self.overlay.last_rf_hb = self.hb_icons.next(code=2)
-            if not self.callback_running:
+            if not self.callback_running and self.ai_status == keyWords.ARMED:
                self.callback_running = True
                print("calling callback....")
-               # loop: asyncio.AbstractEventLoop = asyncio.get_event_loop()
-               # loop.run_until_complete(__callback)
                asyncio.run(__callback())
             continue
