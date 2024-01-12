@@ -66,16 +66,20 @@ class aiBot(object):
             if f"[#{aiNav.AI_NXT_MODE.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
-               self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.nxt()
-               self.vtx_stream.vtxoverlay.draw_thickness = 2
-               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
+               self.ai_mode = self.ai_modes.nxt()
+               self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
+               # self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
+               # self.vtx_stream.vtxoverlay.draw_thickness = 2
+               # self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_PRV_MODE.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
-               self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.prv()
-               self.vtx_stream.vtxoverlay.draw_thickness = 2
-               self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
+               self.ai_mode = self.ai_modes.prv()
+               self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
+               # self.vtx_stream.vtxoverlay.ai_mode = self.ai_modes.prv()
+               # self.vtx_stream.vtxoverlay.draw_thickness = 2
+               # self.vtx_stream.vtxoverlay.targ_box_color = sysColors.green
                return 0
             elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
