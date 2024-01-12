@@ -30,6 +30,11 @@ class hiveLinkMon(object):
       print("\n\t[ __on_callback ]\n")
 
    def __run_thread(self):
+      # -- -- -- --
+      async def __callback():
+         asyncio.timeout(2.0)
+         print("\n\t[ __on_callback ]\n")
+      # -- -- -- --
       while True:
          time.sleep(0.200)
          delta: dt.timedelta = (dt.datetime.now() - self.dts_last_hbtick)
@@ -45,5 +50,5 @@ class hiveLinkMon(object):
             if not self.callback_running:
                self.callback_running = True
                print("calling callback....")
-               asyncio.run(self.__on_callback())
+               asyncio.run(__callback())
             continue
