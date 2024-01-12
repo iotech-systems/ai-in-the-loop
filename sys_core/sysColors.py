@@ -29,5 +29,7 @@ class sysColors(object):
          return sysColors.rdy
       if keyWords.ARMED in buff:
          return sysColors.armed
+      if ":" in buff:
+         return sysColors.d_yellow
       # -- -- -- --
       return sysColors.green

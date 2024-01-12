@@ -84,8 +84,7 @@ class vtxOverlay(object):
       x_offset: int = 50
       cv2.putText(m.array, "AIa:", ai_actv_org, font
          , scale, sysColors.green, self.draw_thickness)
-      # txtcolor: () = sysColors.str_to_color(self.ai_act)
-      txtcolor: () = sysColors.d_yellow
+      txtcolor: () = sysColors.str_to_color(self.ai_act)
       x, y = ai_actv_org
       cv2.putText(m.array, self.ai_act, ((x + x_offset), y)
          , font, scale, txtcolor, self.draw_thickness)
