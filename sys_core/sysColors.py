@@ -12,6 +12,7 @@ class sysColors(object):
    sleep = (180, 180, 188)
    d_yellow = (242, 201, 15)
    grey_a = (127, 126, 133)
+   rdy = (128, 163, 75)
 
    @staticmethod
    def str_to_color(buff: str):
@@ -23,5 +24,7 @@ class sysColors(object):
          return sysColors.purp_0
       if keyWords.OFF in buff:
          return sysColors.grey_a
+      if keyWords.RDY in buff:
+         return sysColors.rdy
       # -- -- -- --
       return sysColors.green

@@ -82,6 +82,11 @@ class aiBot(object):
                self.vtx_stream.vtxoverlay.draw_thickness = 2
                self.vtx_stream.vtxoverlay.targ_box_color = sysColors.sleep
                return 0
+            elif f"[#{aiNav.AI_ARM.name}#]" in str_msg:
+               self.vtx_stream.vtxoverlay.ai_mode = keyWords.RDY
+               self.vtx_stream.vtxoverlay.ai_act = keyWords.RDY
+               self.vtx_stream.vtxoverlay.ai_stat = keyWords.RDY
+               return 0
             elif f"[#{aiNav.AI_DISARM.name}#]" in str_msg:
                self.vtx_stream.vtxoverlay.ai_mode = keyWords.OFF
                self.vtx_stream.vtxoverlay.ai_act = keyWords.OFF
