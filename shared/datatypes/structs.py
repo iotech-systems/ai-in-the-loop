@@ -26,4 +26,3 @@ sysNavKeys: {} = {"Key.up": aiNav.AI_NXT_MODE
    , "Key.f3": aiNav.AI_OFF
    , "Key.f4": aiNav.AI_RUN
    , "Key.f5": aiNav.AI_STOP}
-

@@ -1,5 +1,5 @@
 
-import time
+import time, asyncio
 import threading as th
 import configparser as cp
 # -- shared --
@@ -63,6 +63,7 @@ class aiBot(object):
             # -- -- -- --
             bytes_msg: bytes = self.rxtx_arr_in.pop()
             str_msg: str = str(bytes_msg)
+            # -- -- AI MODE | ACT TO TAKE -- --
             if f"[#{aiNav.AI_NXT_MODE.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
@@ -75,18 +76,22 @@ class aiBot(object):
                self.ai_mode = self.ai_modes.prv()
                self.vtx_stream.vtxoverlay.update(ai_m=self.ai_mode)
                return 0
+            # -- -- AI TAKE ACTION ON -- --
             elif f"[#{aiNav.AI_NXT_ACTON.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
                self.ai_acton = self.ai_actons.nxt()
                self.vtx_stream.vtxoverlay.update(ai_a=self.ai_acton)
+               self.__arm_acton()
                return 0
             elif f"[#{aiNav.AI_PRV_ACTON.name}#]" in str_msg:
                if self.ai_status == keyWords.OFF:
                   return 0
                self.ai_acton = self.ai_actons.prv()
                self.vtx_stream.vtxoverlay.update(ai_a=self.ai_acton)
+               self.__arm_acton()
                return 0
+            # -- -- TURN AI ON / OFF -- --
             elif f"[#{aiNav.AI_ON.name}#]" in str_msg:
                self.__set_ai_vals(keyWords.RDY)
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
@@ -95,6 +100,7 @@ class aiBot(object):
                self.__set_ai_vals(keyWords.OFF)
                self.vtx_stream.vtxoverlay.update(self.ai_mode, self.ai_acton, self.ai_status)
                return 0
+            # -- -- HEARTBEAT -- --
             elif f"[#HB#]" in str_msg:
                self.ai_hiveLnk.hb_tick()
                self.vtx_stream.vtxoverlay.last_rf_hb = self.hb_icons.next(0)
@@ -116,6 +122,13 @@ class aiBot(object):
       self.ai_mode = keyword
       self.ai_acton = keyword
       self.ai_status = keyword
+
+   def __arm_acton(self):
+      async def arm_action():
+         await asyncio.sleep(1.2)
+         self.ai_status = keyWords.ARMED
+         self.vtx_stream.vtxoverlay.update(ai_s=self.ai_status)
+      asyncio.run(arm_action())
 
    def __ai_status_thread(self):
       pass
