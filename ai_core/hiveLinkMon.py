@@ -26,6 +26,7 @@ class hiveLinkMon(object):
       self.dts_last_hbtick = dt.datetime.now()
 
    async def __on_callback(self):
+      asyncio.timeout(2.0)
       print("\n\t[ __on_callback ]\n")
 
    def __run_thread(self):
@@ -43,5 +44,6 @@ class hiveLinkMon(object):
             self.overlay.last_rf_hb = self.hb_icons.next(code=2)
             if not self.callback_running:
                self.callback_running = True
+               print("calling callback....")
                asyncio.run(self.__on_callback())
             continue
